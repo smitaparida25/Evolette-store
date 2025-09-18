@@ -1,4 +1,4 @@
-package com.evolette.Evolette.Shop;
+package com.evolette.shop;
 
 public @interface SpringBootApplication {
 }
