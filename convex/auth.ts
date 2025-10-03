@@ -27,4 +27,25 @@ handler: async(ctx, {email,password}) => {
     },
   });
 
+export const loginUser = mutation({
+    args: {
+        email: v.string(),
+        password: v.string(),
+    },
+handler: async(ctx, {email,password}) => {
+    const user = await ctx.db.query("users").filter(q => q.eq(q.field("email"), email)).first();
+       if(!user){
+           throw new Error("Invalid gmail");
+       }
+   const isValid = await bcrypt.compare(password, user.password);
+   if(!isValid){
+       throw new Error("Invalid Password.");
+   }
+
+   return {
+             id: user._id,
+             email: user.email,
+           };
+        },
+    });
 
