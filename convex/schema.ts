@@ -15,6 +15,6 @@ export default defineSchema({
   cartItems: defineTable({
     productId: v.id("products"),
     quantity: v.number(),
-    userId: v.string(),
+    userId: v.id("users"),
   }),
 });
