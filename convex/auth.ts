@@ -1,7 +1,8 @@
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import{ mutation } from "./_generated/server";
 // used to validate the arg types
-import{ v } from "convex";
+import { v } from "convex/values";
+
 
 export const signupUser = mutation({
     args: {
