@@ -1,52 +1,26 @@
-import bcrypt from "bcryptjs";
-import{ mutation } from "./_generated/server";
-// used to validate the arg types
+import { mutation } from "./_generated/server";
 import { v } from "convex/values";
 
+export const insertUser = mutation({
+  args: {
+    email: v.string(),
+    password: v.string(),
+  },
+  handler: async (ctx, { email, password }) => {
+    const existing = await ctx.db
+      .query("users")
+      .filter(q => q.eq(q.field("email"), email))
+      .first();
 
-export const signupUser = mutation({
-    args: {
-        email: v.string(),
-        password: v.string(),
-    },
+    if (existing) {
+      throw new Error("User already exists.");
+    }
 
-// handler is a function that will run when signupUser is called (it's async because it does the database calls and bcrypt that returns promise first)
-handler: async(ctx, {email,password}) => {
-    const existing = await ctx.db.query("users").filter(q => q.eq(q.field("email"), email)).first();
-    if(existing){
-        throw new Error("User Already Exits.");
-        }
-    const hashedPassword = await bcrypt.hash(password,10);
-    const newUser = await ctx.db.insert("users",{
-        email,
-        password: hashedPassword
-        });
+    const newUser = await ctx.db.insert("users", { email, password });
+
     return {
-          id: newUser._id,
-          email: newUser.email,
-        };
-    },
-  });
-
-export const loginUser = mutation({
-    args: {
-        email: v.string(),
-        password: v.string(),
-    },
-handler: async(ctx, {email,password}) => {
-    const user = await ctx.db.query("users").filter(q => q.eq(q.field("email"), email)).first();
-       if(!user){
-           throw new Error("Invalid gmail");
-       }
-   const isValid = await bcrypt.compare(password, user.password);
-   if(!isValid){
-       throw new Error("Invalid Password.");
-   }
-
-   return {
-             id: user._id,
-             email: user.email,
-           };
-        },
-    });
-
+      id: newUser,
+      email: email,
+    };
+  },
+});
