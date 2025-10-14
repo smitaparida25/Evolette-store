@@ -8,13 +8,28 @@ export const signupUser = action({
     password: v.string(),
   },
   handler: async (ctx, { email, password }) => {
-    // Hash the password in the action (where async operations are allowed)
     const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Call the mutation to insert the user
     return await ctx.runMutation("auth:insertUser", {
       email,
       password: hashedPassword,
     });
   },
 });
+
+export const loginUser = action({
+    args: {
+        email: v.string(),
+        password: v.string(),
+        },
+    handler: async (ctx, {email,password}) => {
+        const user = await ctx.db.query("users").filter(q=> q.eq(q.field("email"), email)).first();
+        if(!user){
+            throw new Error("No user");
+            }
+        const isValid = await bcrypt.compare(password, user.password);
+        if(!isValid){
+            throw new Error("Invalid Password");
+            }
+        return { id: user._id, email: user.email };
+        },
+    });
