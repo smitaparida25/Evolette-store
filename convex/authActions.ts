@@ -1,6 +1,7 @@
 import { action } from "./_generated/server";
 import { v } from "convex/values";
 import bcrypt from "bcryptjs";
+import { mutation } from "./_generated/server";
 
 export const signupUser = action({
   args: {
@@ -22,14 +23,17 @@ export const loginUser = action({
         password: v.string(),
         },
     handler: async (ctx, {email,password}) => {
-        const user = await ctx.db.query("users").filter(q=> q.eq(q.field("email"), email)).first();
-        if(!user){
-            throw new Error("No user");
-            }
+        const user = await ctx.runQuery("auth:getUserByEmail", { email });
+
+        if (!user) {
+          throw new Error("No user found");
+        }
+
         const isValid = await bcrypt.compare(password, user.password);
-        if(!isValid){
-            throw new Error("Invalid Password");
-            }
-        return { id: user._id, email: user.email };
+                if(!isValid){
+                    throw new Error("Invalid Password");
+                }
+            return { id: user.id, email: user.email };
         },
+
     });
