@@ -17,7 +17,7 @@ export const addToCart = mutation({
       .first();
 
     if (existingCartItem) {
-      await ctx.db.update(existingCartItem._id, {
+      await ctx.db.patch(existingCartItem._id, {
         quantity: existingCartItem.quantity + 1,
       });
       return { message: "Cart updated", quantity: existingCartItem.quantity + 1 };
