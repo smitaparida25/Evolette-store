@@ -1,4 +1,4 @@
-import { mutation } from "./_generated/server";
+import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 
 export const addToCart = mutation({
@@ -30,4 +30,14 @@ export const addToCart = mutation({
       return { message: "Added to cart", cartItemId: newCartItem };
     }
   },
+  });
+export const getCart = query({
+  args: { userId: v.id("users") },
+  handler: async (ctx, { userId }) => {
+    return await ctx.db
+      .query("cartItems")
+      .filter(q => q.eq(q.field("userId"), userId))
+      .collect();
+  },
 });
+
