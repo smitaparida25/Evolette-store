@@ -34,10 +34,28 @@ export const addToCart = mutation({
 export const getCart = query({
   args: { userId: v.id("users") },
   handler: async (ctx, { userId }) => {
-    return await ctx.db
+    const items = await ctx.db
       .query("cartItems")
       .filter(q => q.eq(q.field("userId"), userId))
       .collect();
+
+    const cartWithProducts = await Promise.all(
+      items.map(async (item) => {
+        const product = await ctx.db.get(item.productId);
+        return {
+          _id: item._id,
+          quantity: item.quantity,
+          productId: item.productId,
+          name: product.name,
+          price: product.price,
+          imageUrl: product.imageUrl,
+        };
+      })
+    );
+
+    return cartWithProducts;
   },
 });
+
+
 
