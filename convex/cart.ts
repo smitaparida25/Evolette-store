@@ -31,6 +31,34 @@ export const addToCart = mutation({
     }
   },
   });
+
+export const removeItem = mutation({
+    args:{
+        id: v.id("cartItems"),
+        },
+    handler: async(ctx, {id}) => {
+        return await ctx.db.delete(id);
+        },
+    });
+
+export const updateQuantity = mutation({
+    args:{
+        id: v.id("cartItems"),
+        change: v.number(),
+        },
+    handler: async(ctx, {id,change}) => {
+        const item = await ctx.db.get(id);
+        if (!item) throw new Error("Item not found");
+
+        const newQty = item.quantity + change;
+        if(newQty<=0){
+            await ctx.db.delete(id);
+            }
+        else{
+            await ctx.db.patch(id, {quantity:newQty});
+            }
+        },
+    });
 export const getCart = query({
   args: { userId: v.id("users") },
   handler: async (ctx, { userId }) => {
