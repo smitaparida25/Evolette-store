@@ -1,0 +1,23 @@
+.dashboard {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 100vh;
+  background: #f3f4f6;
+}
+
+.dashboard h1 {
+  font-size: 1rem;
+  margin-left: 10px;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.dashboard p {
+  font-size: 10rem;
+  margin-left: 10px;
+  font-weight: 900;
+  color: #1f2937;
+  margin-left: -50px;
+  margin-top: 40px;
+}
