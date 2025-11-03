@@ -14,6 +14,7 @@ export default function Login(){
             setMessage("Login Successful");
             setEmail("");
             setPassword("");
+            window.location.href = "http://localhost:3000";
         } catch (error){
             console.error(error);
             setMessage("Login failed.");

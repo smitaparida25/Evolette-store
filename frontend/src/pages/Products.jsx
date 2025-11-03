@@ -33,7 +33,6 @@ function Products() {
             const handleAddToCart = async () => {
               try {
                 await addToCart({
-                  userId: "jd72yb6ds56yp220jsq1dzpzh17sfdsd",
                   productId: product._id,
                 });
                 alert(`${product.name} added to cart ✅`);

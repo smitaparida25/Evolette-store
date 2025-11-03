@@ -13,6 +13,9 @@ function Dashboard() {
             made with love<br />
             and detail.
           </p>
+           <Link to="/signup" className="signup-btn">
+                    Sign Up
+           </Link>
         </div>
         <Link to="/products" className="card-container">
                 <div className="card">

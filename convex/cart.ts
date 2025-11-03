@@ -3,10 +3,13 @@ import { v } from "convex/values";
 
 export const addToCart = mutation({
   args: {
-    userId: v.id("users"),
     productId: v.id("products"),
   },
-  handler: async (ctx, { userId, productId }) => {
+  handler: async (ctx, { productId }) => {
+      const identity = await ctx.auth.getUserIdentity();
+      if (!identity) throw new Error("Not authenticated");
+
+      const userId = identity.subject;
     const existingCartItem = await ctx.db
       .query("cartItems")
       .filter(
@@ -33,38 +36,47 @@ export const addToCart = mutation({
   });
 
 export const removeItem = mutation({
-    args:{
-        id: v.id("cartItems"),
-        },
-    handler: async(ctx, {id}) => {
-        return await ctx.db.delete(id);
-        },
-    });
+  args: { id: v.id("cartItems") },
+  handler: async (ctx, { id }) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("Not authenticated");
+
+    const item = await ctx.db.get(id);
+    if (!item) throw new Error("Item not found");
+    if (item.userId !== identity.subject) throw new Error("Unauthorized");
+
+    return await ctx.db.delete(id);
+  },
+});
 
 export const updateQuantity = mutation({
-    args:{
-        id: v.id("cartItems"),
-        change: v.number(),
-        },
-    handler: async(ctx, {id,change}) => {
-        const item = await ctx.db.get(id);
-        if (!item) throw new Error("Item not found");
+  args: { id: v.id("cartItems"), change: v.number() },
+  handler: async (ctx, { id, change }) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("Not authenticated");
 
-        const newQty = item.quantity + change;
-        if(newQty<=0){
-            await ctx.db.delete(id);
-            }
-        else{
-            await ctx.db.patch(id, {quantity:newQty});
-            }
-        },
-    });
+    const item = await ctx.db.get(id);
+    if (!item) throw new Error("Item not found");
+    if (item.userId !== identity.subject) throw new Error("Unauthorized");
+
+    const newQty = item.quantity + change;
+    if (newQty <= 0) {
+      await ctx.db.delete(id);
+    } else {
+      await ctx.db.patch(id, { quantity: newQty });
+    }
+  },
+});
 export const getCart = query({
-  args: { userId: v.id("users") },
-  handler: async (ctx, { userId }) => {
+  handler: async (ctx) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) return [];
+
+    const userId = identity.subject;
+
     const items = await ctx.db
       .query("cartItems")
-      .filter(q => q.eq(q.field("userId"), userId))
+      .filter((q) => q.eq(q.field("userId"), userId))
       .collect();
 
     const cartWithProducts = await Promise.all(
@@ -84,6 +96,3 @@ export const getCart = query({
     return cartWithProducts;
   },
 });
-
-
-

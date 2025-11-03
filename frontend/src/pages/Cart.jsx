@@ -2,8 +2,7 @@ import React from "react";
 import { useQuery, useMutation } from "convex/react";
 
 function Cart() {
-  const userId = "dummy_id";
-  const cartItems = useQuery("cart:getCart", { userId });
+  const cartItems = useQuery("cart:getCart");
   const updateQuantity = useMutation("cart:updateQuantity");
   const removeItem = useMutation("cart:removeItem");
 
