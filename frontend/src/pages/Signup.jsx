@@ -15,7 +15,7 @@ export default function Signup() {
       setMessage("Signup Successful.");
       setEmail("");
       setPassword("");
-      window.location.href = "http://localhost:3000";
+      window.location.href = "http://localhost:3000/login";
     } catch (error) {
       console.error(error);
       setMessage("Signup failed. Try again.");

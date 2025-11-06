@@ -32,9 +32,17 @@ function Products() {
           {products.map((product) => {
             const handleAddToCart = async () => {
               try {
+                const user = JSON.parse(localStorage.getItem("user"));
+                if (!user) {
+                  alert("Please log in first.");
+                  return;
+                }
+
                 await addToCart({
                   productId: product._id,
+                  userId: user.id,
                 });
+
                 alert(`${product.name} added to cart ✅`);
               } catch (err) {
                 console.error(err);

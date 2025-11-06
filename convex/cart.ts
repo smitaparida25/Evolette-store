@@ -4,19 +4,12 @@ import { v } from "convex/values";
 export const addToCart = mutation({
   args: {
     productId: v.id("products"),
+    userId: v.string(),
   },
-  handler: async (ctx, { productId }) => {
-      const identity = await ctx.auth.getUserIdentity();
-      if (!identity) throw new Error("Not authenticated");
-
-      const userId = identity.subject;
+  handler: async (ctx, { productId, userId }) => {
     const existingCartItem = await ctx.db
       .query("cartItems")
-      .filter(
-        (q) =>
-          q.eq(q.field("userId"), userId) &&
-          q.eq(q.field("productId"), productId)
-      )
+      .filter(q => q.eq(q.field("userId"), userId) && q.eq(q.field("productId"), productId))
       .first();
 
     if (existingCartItem) {
@@ -33,31 +26,33 @@ export const addToCart = mutation({
       return { message: "Added to cart", cartItemId: newCartItem };
     }
   },
-  });
+});
+
 
 export const removeItem = mutation({
-  args: { id: v.id("cartItems") },
-  handler: async (ctx, { id }) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Not authenticated");
-
+  args: {
+    id: v.id("cartItems"),
+    userId: v.string(),
+  },
+  handler: async (ctx, { id, userId }) => {
     const item = await ctx.db.get(id);
     if (!item) throw new Error("Item not found");
-    if (item.userId !== identity.subject) throw new Error("Unauthorized");
-
+    if (item.userId !== userId) throw new Error("Unauthorized");
     return await ctx.db.delete(id);
   },
 });
 
-export const updateQuantity = mutation({
-  args: { id: v.id("cartItems"), change: v.number() },
-  handler: async (ctx, { id, change }) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Not authenticated");
 
+export const updateQuantity = mutation({
+  args: {
+    id: v.id("cartItems"),
+    change: v.number(),
+    userId: v.string(),
+  },
+  handler: async (ctx, { id, change, userId }) => {
     const item = await ctx.db.get(id);
     if (!item) throw new Error("Item not found");
-    if (item.userId !== identity.subject) throw new Error("Unauthorized");
+    if (item.userId !== userId) throw new Error("Unauthorized");
 
     const newQty = item.quantity + change;
     if (newQty <= 0) {
@@ -67,13 +62,10 @@ export const updateQuantity = mutation({
     }
   },
 });
+
 export const getCart = query({
-  handler: async (ctx) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) return [];
-
-    const userId = identity.subject;
-
+  args: { userId: v.string() },
+  handler: async (ctx, { userId }) => {
     const items = await ctx.db
       .query("cartItems")
       .filter((q) => q.eq(q.field("userId"), userId))

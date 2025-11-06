@@ -1,25 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { ConvexProvider } from 'convex/react';
-import { convex } from './api/convexClient';
-import { BrowserRouter } from "react-router-dom";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import { ConvexReactClient } from "convex/react";
+import { ConvexAuthProvider } from "@convex-dev/auth/react";
 
+const convex = new ConvexReactClient("https://chatty-bulldog-230.convex.cloud");
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
+const root = document.getElementById("root");
+if (!root) throw new Error("Root element not found");
+
+ReactDOM.createRoot(root).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <ConvexProvider client={convex}>
-        <App />
-      </ConvexProvider>
-    </BrowserRouter>
+    <ConvexAuthProvider client={convex}>
+      <App />
+    </ConvexAuthProvider>
   </React.StrictMode>
 );
-
-
-reportWebVitals();

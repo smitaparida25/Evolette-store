@@ -10,10 +10,11 @@ export default function Login(){
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
-            await loginUser({email, password});
+            const user = await loginUser({ email, password });
             setMessage("Login Successful");
             setEmail("");
             setPassword("");
+            localStorage.setItem("user", JSON.stringify(user));
             window.location.href = "http://localhost:3000";
         } catch (error){
             console.error(error);
