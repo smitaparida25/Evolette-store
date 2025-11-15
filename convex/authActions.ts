@@ -33,7 +33,7 @@ export const loginUser = action({
                 if(!isValid){
                     throw new Error("Invalid Password");
                 }
-            return { id: user.id, email: user.email };
+            return { _id: user._id, email: user.email };
         },
 
     });

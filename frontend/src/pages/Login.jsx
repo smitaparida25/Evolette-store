@@ -14,7 +14,7 @@ export default function Login(){
             setMessage("Login Successful");
             setEmail("");
             setPassword("");
-            localStorage.setItem("user", JSON.stringify(user));
+            localStorage.setItem("user", JSON.stringify({ _id: user._id, email: user.email }));
             window.location.href = "http://localhost:3000";
         } catch (error){
             console.error(error);

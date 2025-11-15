@@ -4,7 +4,7 @@ import { v } from "convex/values";
 export const addToCart = mutation({
   args: {
     productId: v.id("products"),
-    userId: v.string(),
+    userId: v.id("users"),
   },
   handler: async (ctx, { productId, userId }) => {
     const existingCartItem = await ctx.db
@@ -23,6 +23,7 @@ export const addToCart = mutation({
         productId,
         quantity: 1,
       });
+
       return { message: "Added to cart", cartItemId: newCartItem };
     }
   },

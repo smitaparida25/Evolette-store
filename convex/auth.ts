@@ -32,6 +32,6 @@ export const getUserByEmail = query({
     handler: async (ctx, {email}) => {
         const user = await ctx.db.query("users").filter(q=> q.eq(q.field("email"), email)).first();
 
-    return user ? { id: user._id, email: user.email, password: user.password } : null;
+    return user ? { _id: user._id, email: user.email, password: user.password } : null;
         },
     });

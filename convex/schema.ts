@@ -12,9 +12,11 @@ export default defineSchema({
     quantity: v.number(),
     imageUrl: v.string(),
   }),
+
   cartItems: defineTable({
     productId: v.id("products"),
     quantity: v.number(),
     userId: v.id("users"),
   }),
+
 });

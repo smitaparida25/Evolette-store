@@ -2,9 +2,17 @@ import React from "react";
 import { useQuery, useMutation } from "convex/react";
 
 function Cart() {
-  const cartItems = useQuery("cart:getCart");
+  const rawUser = localStorage.getItem("user");
+  const user = rawUser ? JSON.parse(rawUser) : null;
+
+  const cartItems = useQuery("cart:getCart", { userId: user._id });
+
+
   const updateQuantity = useMutation("cart:updateQuantity");
   const removeItem = useMutation("cart:removeItem");
+
+  if (!user) return <p>Please log in to view your cart.</p>;
+
 
 
   if (!cartItems) return <p>Loading...</p>;
@@ -39,7 +47,7 @@ function Cart() {
                <p>Price: ₹{item.price * item.quantity}</p>
                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                   <button
-                    onClick={() => updateQuantity({ id: item._id, change: -1 })}
+                    onClick={() => updateQuantity({ id: item._id, change: -1, userId: user._id })}
                     style={{
                       padding: "4px 8px",
                       borderRadius: "5px",
@@ -54,7 +62,7 @@ function Cart() {
                   <span>{item.quantity}</span>
 
                   <button
-                    onClick={() => updateQuantity({ id: item._id, change: 1 })}
+                    onClick={() => updateQuantity({ id: item._id, change: 1,userId: user._id })}
                     style={{
                       padding: "4px 8px",
                       borderRadius: "5px",
@@ -67,7 +75,7 @@ function Cart() {
                   </button>
 
                   <button
-                    onClick={() => removeItem({ id: item._id })}
+                    onClick={() => removeItem({ id: item._id,userId: user._id })}
                     style={{
                       marginLeft: "10px",
                       padding: "4px 10px",
