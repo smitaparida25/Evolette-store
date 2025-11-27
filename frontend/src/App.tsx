@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Products from "./pages/Products";
 import Cart from "./pages/Cart";
 import Dashboard from "./pages/Dashboard";
+import { useUserStore } from "./store/useUserStore";
 
 function App() {
+  const loadUser = useUserStore((s) => s.loadUserFromStorage);
+
+  useEffect(() => {
+    loadUser();
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -19,6 +26,5 @@ function App() {
     </BrowserRouter>
   );
 }
-
 
 export default App;

@@ -1,11 +1,15 @@
 import React from "react";
 import { useQuery, useMutation } from "convex/react";
+import { useUserStore } from "../store/useUserStore";
 
 function Cart() {
-  const rawUser = localStorage.getItem("user");
-  const user = rawUser ? JSON.parse(rawUser) : null;
+  const user = useUserStore((s) => s.user);
 
-  const cartItems = useQuery("cart:getCart", { userId: user._id });
+  const cartItems = useQuery(
+    "cart:getCart",
+    user ? { userId: user._id } : "skip"
+  );
+
 
 
   const updateQuantity = useMutation("cart:updateQuantity");
@@ -47,6 +51,7 @@ function Cart() {
                <p>Price: ₹{item.price * item.quantity}</p>
                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                   <button
+
                     onClick={() => updateQuantity({ id: item._id, change: -1, userId: user._id })}
                     style={{
                       padding: "4px 8px",
