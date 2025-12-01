@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {useAction} from "convex/react";
+import '../App.css';
 
 export default function Login(){
     const loginUser = useAction("authActions:loginUser");
@@ -22,7 +23,8 @@ export default function Login(){
         }
     };
     return (
-        <div style={{ maxWidth: "400px", margin: "50px auto" }}>
+        <div className = "login-container">
+        <div className="login-card">
             <h2> Login </h2>
             <form onSubmit={handleSubmit}>
                 <input
@@ -43,6 +45,10 @@ export default function Login(){
             </form>
                 {message && <p>{message}</p>}
         </div>
-
+        <img
+            className="login-image"
+            src="/images/image.png" alt="visual"
+          />
+        </div>
     );
 }

@@ -19,4 +19,8 @@ export default defineSchema({
     userId: v.id("users"),
   }),
 
+  wishlist: defineTable({
+      userId: v.id("users"),
+      productId: v.id("products"),
+      }),
 });

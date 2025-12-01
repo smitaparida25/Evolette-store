@@ -66,6 +66,7 @@ function Products() {
                   padding: "15px",
                   textAlign: "center",
                   boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
+                  position: "relative",
                 }}
               >
                 <img
@@ -95,6 +96,9 @@ function Products() {
                 >
                   Add to Cart
                 </button>
+                <button className="wishlist-btn">
+                     ❤️
+                  </button>
               </div>
             );
           })}
