@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAction } from "convex/react";
 import { Link } from "react-router-dom";
+import "../App.css";
 
 export default function Signup() {
   const signupUser = useAction("authActions:signupUser");
@@ -15,7 +16,7 @@ export default function Signup() {
       setMessage("Signup Successful.");
       setEmail("");
       setPassword("");
-      window.location.href = "http://localhost:3000/login";
+      window.location.href = "/login";
     } catch (error) {
       console.error(error);
       setMessage("Signup failed. Try again.");
@@ -23,29 +24,45 @@ export default function Signup() {
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "50px auto" }}>
-      <h2>Signup</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Submit</button>
-      </form>
-      {message && <p>{message}</p>}
-      <p>
-        Already a user? <Link to="/login">Login here</Link>
-      </p>
+    <div className="auth-container">
+      <div className="auth-card">
+        <div className="auth-title-row">
+          <h2>Signup</h2>
+
+          <label className="auth-switch">
+            <input
+              type="checkbox"
+              checked={true}
+              onChange={() => (window.location.href = "/login")}
+            />
+            <span className="auth-slider round"></span>
+          </label>
+        </div>
+
+        <form onSubmit={handleSubmit}>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+
+          <button type="submit">Submit</button>
+        </form>
+
+        {message && <p>{message}</p>}
+      </div>
+
+      <img className="auth-image" src="/images/image.png" alt="visual" />
     </div>
   );
 }

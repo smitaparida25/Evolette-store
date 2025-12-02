@@ -68,13 +68,13 @@ button:active {
 
 
 
-.login-card form {
+.auth-card form {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.login-container {
+.auth-container {
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -82,25 +82,92 @@ button:active {
   width: 100%;
 }
 
-.login-card {
+.auth-card {
   width: 800px;
   padding: 20px;
   height: 48pc;
   background: #fff;
   border-radius: 0px;
   box-shadow: none;
-  margin-top: 40px;
+  margin-top: 200px;
 }
 
-.login-image {
+.auth-image {
   width: 60pc;
   height: 50pc;
   border-radius: 12px;
   object-fit: cover;
 }
 
-.wishlist-btn{
-position: "absolute",
+.wishlist-btn {
+  position: absolute;
 }
+
+.auth-toggle-container {
+  display: flex;
+  align-items: center;
+}
+
+.auth-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.auth-title-row h2 {
+  margin: 0;
+}
+
+.auth-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.auth-switch input {
+  display: none;
+}
+
+.auth-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+}
+
+.auth-slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #fff;
+  transition: 0.4s;
+}
+
+.auth-switch input:checked + .auth-slider {
+  background-color: #66bb6a;
+}
+
+.auth-switch input:checked + .auth-slider:before {
+  transform: translateX(26px);
+}
+
+.auth-slider.round {
+  border-radius: 34px;
+}
+
+.auth-slider.round:before {
+  border-radius: 50%;
+}
+
 
 
