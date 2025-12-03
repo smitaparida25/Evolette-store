@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useAction } from "convex/react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../App.css";
 
 export default function Signup() {
   const signupUser = useAction("authActions:signupUser");
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -16,7 +17,7 @@ export default function Signup() {
       setMessage("Signup Successful.");
       setEmail("");
       setPassword("");
-      window.location.href = "/login";
+      navigate("/login");
     } catch (error) {
       console.error(error);
       setMessage("Signup failed. Try again.");
@@ -33,7 +34,7 @@ export default function Signup() {
             <input
               type="checkbox"
               checked={true}
-              onChange={() => (window.location.href = "/login")}
+              onChange={() => navigate("/login")}
             />
             <span className="auth-slider round"></span>
           </label>

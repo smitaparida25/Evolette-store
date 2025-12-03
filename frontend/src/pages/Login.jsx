@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { useAction } from "convex/react";
 import '../App.css';
+import { useNavigate } from "react-router-dom";
+
 
 export default function Login() {
   const loginUser = useAction("authActions:loginUser");
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -16,7 +19,7 @@ export default function Login() {
       setEmail("");
       setPassword("");
       localStorage.setItem("user", JSON.stringify({ _id: user._id, email: user.email }));
-      window.location.href = "http://localhost:3000";
+      navigate("/");
     } catch (error) {
       console.error(error);
       setMessage("Login failed.");
@@ -35,7 +38,7 @@ export default function Login() {
               <input
                 type="checkbox"
                 id="auth-checkbox"
-                onChange={() => (window.location.href = "/signup")}
+                onChange={() => navigate("/signup")}
               />
               <span className="auth-slider round"></span>
             </label>
