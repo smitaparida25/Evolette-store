@@ -98,10 +98,29 @@ button:active {
   border-radius: 12px;
   object-fit: cover;
 }
-
-.wishlist-btn {
-  position: absolute;
+.wishlist-toggle input {
+  display: none;
 }
+
+.wishlist-toggle span {
+  cursor: pointer;
+  font-size: 22px;
+  transition: 0.2s;
+  color: #ff4d6d;
+  position: absolute;
+  top: 22px;
+  right: 22px;
+}
+
+.wishlist-toggle input:not(:checked) + span {
+  color: #aaa;
+  filter: grayscale(100%);
+}
+
+.wishlist-toggle span:hover {
+  transform: scale(1.1);
+}
+
 
 .auth-toggle-container {
   display: flex;
@@ -168,6 +187,25 @@ button:active {
 .auth-slider.round:before {
   border-radius: 50%;
 }
+.logo-link {
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #222;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.logo-link:hover {
+  opacity: 0.7;
+}
+.logo-link {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 5;
+}
+
+
 
 
 

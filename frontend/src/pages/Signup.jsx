@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAction } from "convex/react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../App.css";
 
 export default function Signup() {
@@ -26,6 +27,9 @@ export default function Signup() {
 
   return (
     <div className="auth-container">
+        <Link to="/" className="logo-link">
+          Evolette
+        </Link>
       <div className="auth-card">
         <div className="auth-title-row">
           <h2>Signup</h2>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAction } from "convex/react";
 import '../App.css';
 import { useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const loginUser = useAction("authActions:loginUser");
@@ -28,8 +28,10 @@ export default function Login() {
 
   return (
     <div className="auth-container">
+        <Link to="/" className="logo-link">
+                  Evolette
+        </Link>
       <div className="auth-card">
-
         <div className="auth-title-row">
           <h2>Login</h2>
 

@@ -96,9 +96,10 @@ function Products() {
                 >
                   Add to Cart
                 </button>
-                <button className="wishlist-btn">
-                     ❤️
-                  </button>
+                <label class="wishlist-toggle">
+                   <input type="checkbox" />
+                   <span>❤️</span>
+                 </label>
               </div>
             );
           })}
