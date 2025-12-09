@@ -9,27 +9,27 @@ export const addToWishlist = mutation({
     handler: async (ctx, {productId,userId}) => {
         const existing = await ctx.db
               .query("wishlist")
-              .filter((q) =>
-                q.eq(q.field("userId"), userId) &&
-                q.eq(q.field("productId"), productId)
+              .filter(q =>
+                q.and(
+                  q.eq(q.field("userId"), userId),
+                  q.eq(q.field("productId"), productId)
+                )
               )
               .first();
 
             if (existing) {
               return { message: "Already in wishlist" };
             }
-        const newWishlistItem = await ctx.db.insert("wishlist", {
-              userId,
-              productId,
-            })o;
-        return { message: "Added to wishlist", newWishlistItem};
+        const wishlistItemId = await ctx.db.insert("wishlist", { userId, productId });
+        return { message: "Added to wishlist", wishlistItemId };
+
         },
     });
 
 export const removeFromWishlist = mutation({
   args: {
     id: v.id("wishlist"),
-    userId: v.string(),
+    userId: v.id("users"),
   },
   handler: async (ctx, { id, userId }) => {
     const item = await ctx.db.get(id);
@@ -41,7 +41,7 @@ export const removeFromWishlist = mutation({
 });
 
 export const getWishlist = query({
-  args: { userId: v.string() },
+  args: { userId: v.id("users") },
   handler: async (ctx, { userId }) => {
     const items = await ctx.db
       .query("wishlist")

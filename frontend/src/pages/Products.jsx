@@ -6,6 +6,11 @@ import "../App.css";
 function Products() {
   const products = useQuery("products:getProducts");
   const addToCart = useMutation("cart:addToCart");
+  const addToWishlist = useMutation("wishlist:addToWishlist");
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userId = user?._id;
+
+  const wishlist = useQuery("wishlist:getWishlist", { userId });
 
   if (!products) return <p>Loading...</p>;
 
@@ -31,25 +36,27 @@ function Products() {
         >
           {products.map((product) => {
 
+            const isWishlisted = wishlist?.some(
+              (item) => item.productId === product._id
+            );
+
+            const handleToggleWishlist = async () => {
+              const user = JSON.parse(localStorage.getItem("user"));
+              if (!user) return alert("Please log in first.");
+              await addToWishlist({
+                productId: product._id,
+                userId: user._id,
+              });
+            };
+
             const handleAddToCart = async () => {
               try {
                 const user = JSON.parse(localStorage.getItem("user"));
-                console.log("ADD TO CART PAYLOAD:", {
-                  productId: product._id,
-                  userId: user._id,
-                });
-
-                if (!user) {
-                  alert("Please log in first.");
-                  return;
-                }
-
+                if (!user) return alert("Please log in first.");
                 await addToCart({
                   productId: product._id,
                   userId: user._id,
                 });
-
-
                 alert(`${product.name} added to cart ✅`);
               } catch (err) {
                 console.error(err);
@@ -82,6 +89,7 @@ function Products() {
                 <h3 style={{ margin: "10px 0" }}>{product.name}</h3>
                 <p>Price: ₹{product.price}</p>
                 <p>Quantity: {product.quantity}</p>
+
                 <button
                   onClick={handleAddToCart}
                   style={{
@@ -96,10 +104,15 @@ function Products() {
                 >
                   Add to Cart
                 </button>
-                <label class="wishlist-toggle">
-                   <input type="checkbox" />
-                   <span>❤️</span>
-                 </label>
+
+                <label className="wishlist-toggle">
+                  <input
+                    type="checkbox"
+                    checked={isWishlisted}
+                    onChange={handleToggleWishlist}
+                  />
+                  <span>❤️</span>
+                </label>
               </div>
             );
           })}

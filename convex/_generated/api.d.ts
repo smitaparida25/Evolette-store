@@ -12,6 +12,7 @@ import type * as auth from "../auth.js";
 import type * as authActions from "../authActions.js";
 import type * as cart from "../cart.js";
 import type * as products from "../products.js";
+import type * as wishlist from "../wishlist.js";
 
 import type {
   ApiFromModules,
@@ -32,6 +33,7 @@ declare const fullApi: ApiFromModules<{
   authActions: typeof authActions;
   cart: typeof cart;
   products: typeof products;
+  wishlist: typeof wishlist;
 }>;
 declare const fullApiWithMounts: typeof fullApi;
 
