@@ -7,6 +7,7 @@ function Products() {
   const products = useQuery("products:getProducts");
   const addToCart = useMutation("cart:addToCart");
   const addToWishlist = useMutation("wishlist:addToWishlist");
+  const removeFromWishlist = useMutation("wishlist:removeFromWishlist");
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user?._id;
 
@@ -43,10 +44,22 @@ function Products() {
             const handleToggleWishlist = async () => {
               const user = JSON.parse(localStorage.getItem("user"));
               if (!user) return alert("Please log in first.");
-              await addToWishlist({
-                productId: product._id,
-                userId: user._id,
-              });
+              if(isWishlisted){
+                  const wishlistItem = wishlist.find(
+                        (item) => item.productId === product._id
+                      );
+                  await removeFromWishlist({
+                        id: wishlistItem._id,
+                        userId: user._id,
+                      });
+                  }
+              else{
+                  await addToWishlist({
+                                  productId: product._id,
+                                  userId: user._id,
+                                });
+                  }
+
             };
 
             const handleAddToCart = async () => {
