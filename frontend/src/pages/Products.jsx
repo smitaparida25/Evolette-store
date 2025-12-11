@@ -10,6 +10,14 @@ function Products() {
   const removeFromWishlist = useMutation("wishlist:removeFromWishlist");
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user?._id;
+  const cart = useQuery(
+                   "cart:getCart",
+                   user ? { userId: user._id } : "skip"
+                 );
+
+
+  const updateQuantity = useMutation("cart:updateQuantity");
+  const removeItem = useMutation("cart:removeItem");
 
   const wishlist = useQuery("wishlist:getWishlist", { userId });
 
@@ -21,6 +29,9 @@ function Products() {
         <Link to="/cart">
           <button className="cart-btn">🛒 Cart</button>
         </Link>
+        <Link to="/wishlist">
+                        <button className="cart-btn">Wishlist</button>
+                      </Link>
       </div>
 
       <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Products</h2>
@@ -40,6 +51,9 @@ function Products() {
             const isWishlisted = wishlist?.some(
               (item) => item.productId === product._id
             );
+
+            const cartItem = cart?.find((item) => item.productId === product._id);
+            const quantityInCart = cartItem ? cartItem.quantity : 0;
 
             const handleToggleWishlist = async () => {
               const user = JSON.parse(localStorage.getItem("user"));
@@ -70,7 +84,7 @@ function Products() {
                   productId: product._id,
                   userId: user._id,
                 });
-                alert(`${product.name} added to cart ✅`);
+
               } catch (err) {
                 console.error(err);
                 alert("Failed to add to cart ❌");
@@ -103,20 +117,49 @@ function Products() {
                 <p>Price: ₹{product.price}</p>
                 <p>Quantity: {product.quantity}</p>
 
-                <button
-                  onClick={handleAddToCart}
-                  style={{
-                    marginTop: "10px",
-                    padding: "8px 15px",
-                    backgroundColor: "#4CAF50",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "5px",
-                    cursor: "pointer",
-                  }}
-                >
-                  Add to Cart
-                </button>
+                {product.quantity === 0 ? (
+                    <p style={{ color: "red", marginTop: "10px" }}>Out of Stock</p>
+                    ) :
+                quantityInCart > 0 ? (
+                                  <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", marginTop: "10px" }}>
+                                    <button
+                                      onClick={() =>
+                                        updateQuantity({ id: cartItem._id, change: -1, userId })
+                                      }
+                                      style={{ padding: "4px 10px", borderRadius: "5px" }}
+                                    >
+                                      -
+                                    </button>
+
+                                    <span>{quantityInCart}</span>
+
+                                    <button
+                                      onClick={() =>
+                                        updateQuantity({ id: cartItem._id, change: 1, userId })
+                                      }
+                                      style={{ padding: "4px 10px", borderRadius: "5px" }}
+                                    >
+                                      +
+                                    </button>
+                                  </div>
+                                ) : (
+                                  <button
+                                    onClick={handleAddToCart}
+                                    style={{
+                                      marginTop: "10px",
+                                      padding: "8px 12px",
+                                      background: "#4caf50",
+                                      color: "white",
+                                      borderRadius: "5px",
+                                      cursor: "pointer",
+                                    }}
+                                  >
+                                    Add to Cart
+                                  </button>
+                                )}
+
+
+
 
                 <label className="wishlist-toggle">
                   <input
