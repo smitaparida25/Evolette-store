@@ -26,6 +26,18 @@ function Products() {
   return (
     <div style={{ maxWidth: "900px", margin: "50px auto", padding: "0 20px" }}>
       <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "10px" }}>
+          <input
+            type="text"
+            placeholder="Search products..."
+            onChange={() => {}}
+            style={{
+              padding: "10px",
+              width: "300px",
+              fontSize: "15px",
+              marginRight: "250px",
+            }}
+          />
+
         <Link to="/cart">
           <button className="cart-btn">🛒 Cart</button>
         </Link>
@@ -33,6 +45,7 @@ function Products() {
                         <button className="cart-btn">Wishlist</button>
                       </Link>
       </div>
+
 
       <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Products</h2>
 
