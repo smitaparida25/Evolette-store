@@ -20,3 +20,18 @@ export const updateProductQuantity = mutation({
     return await ctx.db.patch(productId, { quantity: newQuantity });
   },
 });
+
+export const getProductById = query({
+  args: {
+    productId: v.id("products"),
+  },
+  handler: async (ctx, args) => {
+    const product = await ctx.db.get(args.productId);
+
+    if (!product) {
+      throw new Error("Product not found");
+    }
+
+    return product;
+  },
+});

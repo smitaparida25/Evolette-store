@@ -43,7 +43,7 @@ function Products() {
         </Link>
         <Link to="/wishlist">
                         <button className="cart-btn">Wishlist</button>
-                      </Link>
+        </Link>
       </div>
 
 
@@ -116,6 +116,12 @@ function Products() {
                   position: "relative",
                 }}
               >
+              <Link
+                to={`/product/${product._id}`}
+                target="_blank"
+                  rel="noopener noreferrer"
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
                 <img
                   src={product.imageUrl}
                   alt={product.name}
@@ -129,6 +135,7 @@ function Products() {
                 <h3 style={{ margin: "10px 0" }}>{product.name}</h3>
                 <p>Price: ₹{product.price}</p>
                 <p>Quantity: {product.quantity}</p>
+                </Link>
 
                 {product.quantity === 0 ? (
                     <p style={{ color: "red", marginTop: "10px" }}>Out of Stock</p>
@@ -136,9 +143,13 @@ function Products() {
                 quantityInCart > 0 ? (
                                   <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", marginTop: "10px" }}>
                                     <button
-                                      onClick={() =>
-                                        updateQuantity({ id: cartItem._id, change: -1, userId })
-                                      }
+                                      onClick={() => {
+                                        if (quantityInCart === 1) {
+                                          removeItem({ id: cartItem._id, userId });
+                                        } else {
+                                          updateQuantity({ id: cartItem._id, change: -1, userId });
+                                        }
+                                      }}
                                       style={{ padding: "4px 10px", borderRadius: "5px" }}
                                     >
                                       -
