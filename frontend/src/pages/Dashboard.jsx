@@ -51,7 +51,54 @@ function Dashboard() {
                   </Link>
        </div>
 
+       <div className="about-section">
+         <h2>About Evolette</h2>
+         <p>
+           Evolette is a small crochet studio creating timeless,
+           handcrafted pieces made slowly and thoughtfully.
+         </p>
+         <p>
+           Every item is designed to feel personal — made with
+           patience, quality yarns, and attention to detail.
+         </p>
+       </div>
+
+       <div className="why-section">
+         <h2>Why Evolette?</h2>
+         <ul>
+           <li>100% handmade — no mass production</li>
+           <li>Limited pieces, crafted with care</li>
+           <li>Soft, skin-safe quality yarns</li>
+           <li>Made in small, thoughtful batches</li>
+         </ul>
+       </div>
+
+       <div className="process-section">
+         <h2>How It’s Made</h2>
+         <div className="process-steps">
+           <span>Designed by hand</span>
+           <span>Crocheted stitch by stitch</span>
+           <span>Quality checked</span>
+           <span>Carefully packed</span>
+         </div>
+       </div>
+
+       <div className="cta-section">
+         <h2>Ready to find your favorite?</h2>
+         <Link to="/products" className="cta-btn">
+           Explore Collection
+         </Link>
+       </div>
+
+       <footer className="footer">
+         <p>Handmade with care 🤍</p>
+         <p>© Evolette</p>
+       </footer>
+
+
+
       </div>
+
   );
 }
 

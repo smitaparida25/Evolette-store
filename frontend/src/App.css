@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+:root {
+  --black: #111111;
+  --white: #ffffff;
+  --peach: #f2b3b3;
+  --peach-light: #fbe3e3;
+  --gray-text: #555;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -41,7 +49,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  height: 55vh;
+  height: 48vh;
   background: #f3f4f6;
   margin-bottom: 20px;
 }
@@ -57,7 +65,7 @@
   font-size: 5rem;
   margin-left: 10px;
   font-weight: 300;
-  color: #1f2937;
+  color: #111111;
   margin-left: -50px;
   margin-top: 90px;
 }
@@ -108,17 +116,13 @@ margin: 0 12px;
   display: inline-block;
   margin-top: 20px;
   padding: 10px 25px;
-  background-color: #ff8fab;
+  background-color: #111111;
   color: white;
   text-decoration: none;
   border-radius: 8px;
   font-weight: bold;
   transition: background-color 0.2s ease;
   margin-left: 350px;
-}
-
-.signup-btn:hover {
-  background-color: #ff6b94;
 }
 
 button {
@@ -134,12 +138,6 @@ button {
   transition: all 0.5s ease;
 }
 
-button:hover {
-  background-color: hsl(261deg 80% 48%);
-  color: hsl(0, 0%, 100%);
-  box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
-}
-
 button:active {
   letter-spacing: 3px;
   background-color: hsl(261deg 80% 48%);
@@ -149,6 +147,67 @@ button:active {
   transition: 100ms;
 }
 
+.about-section,
+.why-section,
+.process-section,
+.cta-section {
+  padding: 70px 40px;
+  text-align: center;
+}
+
+.about-section {
+  background: #faf7f2;
+}
+
+.why-section ul {
+  list-style: none;
+  padding: 0;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.why-section li {
+  margin: 10px 0;
+  color: #444;
+}
+
+.process-steps {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  color: #555;
+}
+
+.process-steps span {
+  padding: 10px 16px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.cta-section {
+  background: #111;
+  color: white;
+}
+
+.cta-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 26px;
+  background: white;
+  color: black;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 500;
+}
+
+.footer {
+  padding: 30px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #777;
+}
 
 
 .auth-card form {
