@@ -263,6 +263,55 @@ button:active {
   transform: scale(1.1);
 }
 
+.wishlist-page {
+padding: 24px;
+}
+
+
+.wishlist-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+gap: 16px;
+}
+
+
+.wishlist-card {
+border: 1px solid #eee;
+border-radius: 8px;
+padding: 12px;
+display: flex;
+flex-direction: column;
+gap: 8px;
+}
+
+
+.wishlist-image {
+width: 100%;
+height: 160px;
+object-fit: cover;
+border-radius: 6px;
+}
+
+
+.wishlist-name {
+font-weight: 500;
+}
+
+
+.wishlist-price {
+color: #444;
+}
+
+
+.wishlist-remove {
+margin-top: auto;
+background: none;
+border: 1px solid #ddd;
+padding: 6px;
+border-radius: 6px;
+cursor: pointer;
+}
+
 
 .auth-toggle-container {
   display: flex;

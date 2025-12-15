@@ -38,12 +38,12 @@ function Products() {
             }}
           />
 
-        <Link to="/cart">
-          <button className="cart-btn">🛒 Cart</button>
-        </Link>
         <Link to="/wishlist">
                         <button className="cart-btn">Wishlist</button>
         </Link>
+        <Link to="/cart">
+                  <button className="cart-btn">🛒 Cart</button>
+                </Link>
       </div>
 
 
