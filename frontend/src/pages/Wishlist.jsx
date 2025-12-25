@@ -1,5 +1,6 @@
 import { useQuery, useMutation } from "convex/react";
 import React from "react";
+import { Link } from "react-router-dom";
 
 
 export default function Wishlist() {
@@ -44,17 +45,25 @@ return (
 <div className="wishlist-grid">
 {wishlist.map((item) => (
 <div key={item._id} className="wishlist-card">
+
+
+<Link
+                to={`/product/${item.productId}`}
+                target="_blank"
+                  rel="noopener noreferrer"
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
 <img
 src={item.imageUrl}
 alt={item.name}
 className="wishlist-image"
 />
-
-
 <div className="wishlist-info">
 <p className="wishlist-name">{item.name}</p>
 <p className="wishlist-price">₹{item.price}</p>
 </div>
+</Link>
+
 
 
 <button

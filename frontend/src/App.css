@@ -50,7 +50,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   height: 48vh;
-  background: #f3f4f6;
+  background: #f5dbf7;
   margin-bottom: 20px;
 }
 
@@ -396,7 +396,121 @@ cursor: pointer;
   z-index: 5;
 }
 
+button.remove-btn {
+transform: scale(0.7);
+ font-weight: 600;
+ color: #382b22;
+ text-transform: uppercase;
+ padding: 1.25em 2em;
+ background: #fff0f0;
+ border: 2px solid #b18597;
+ border-radius: 0.75em;
+ -webkit-transform-style: preserve-3d;
+ transform-style: preserve-3d;
+ -webkit-transition: background 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1);
+ transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1);
+}
 
+button.remove-btn::before {
+ position: absolute;
+ content: '';
+ width: 100%;
+ height: 100%;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ background: #f9c4d2;
+ border-radius: inherit;
+ -webkit-box-shadow: 0 0 0 2px #b18597, 0 0.625em 0 0 #ffe3e2;
+ box-shadow: 0 0 0 2px #b18597, 0 0.625em 0 0 #ffe3e2;
+ -webkit-transform: translate3d(0, 0.75em, -1em);
+ transform: translate3d(0, 0.75em, -1em);
+ transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+}
+
+button.remove-btn:hover {
+ background: #ffe9e9;
+}
+
+button.remove-btn:hover::before {
+ -webkit-box-shadow: 0 0 0 2px #b18597, 0 0.5em 0 0 #ffe3e2;
+ box-shadow: 0 0 0 2px #b18597, 0 0.5em 0 0 #ffe3e2;
+ -webkit-transform: translate3d(0, 0.5em, -1em);
+ transform: translate3d(0, 0.5em, -1em);
+}
+
+button.remove-btn:active {
+ background: #ffe9e9;
+ -webkit-transform: translate(0em, 0.75em);
+ transform: translate(0em, 0.75em);
+}
+
+button.remove-btn:active::before {
+ -webkit-box-shadow: 0 0 0 2px #b18597, 0 0 #ffe3e2;
+ box-shadow: 0 0 0 2px #b18597, 0 0 #ffe3e2;
+ -webkit-transform: translate3d(0, 0, -1em);
+ transform: translate3d(0, 0, -1em);
+}
+
+
+.product-image-container {
+  background-color: #e0e0e0;
+  height: 30pc;
+  width: 1417px;
+  margin-top: 39px;
+}
+
+.product-title {
+  font-family: "Playfair Display", serif;
+}
+
+.product-description-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 33pc;
+}
+
+.product-info {
+  flex: 1;
+  margin-left: 45px;
+}
+
+.product-cta {
+  flex-shrink: 0;
+  margin-top: 22px;
+}
+
+.add-to-cart-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: PlusJakartaSans, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Oxygen, Cantarell, Helvetica Neue, Ubuntu, sans-serif;
+  font-size: 1rem;
+  height: 48px;
+  border-radius: 0.4rem;
+  font-weight: 600;
+  padding: 0 1.2rem;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  background: #000;
+  box-shadow: 0 0.5rem 1rem rgba(143, 142, 142, 0.15);
+  width: 300px;
+}
+
+.add-to-cart-btn:hover {
+  background: #2b2a2a;
+}
+
+.price {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #9a9a9a;
+}
 
 
 

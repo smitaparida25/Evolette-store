@@ -87,9 +87,8 @@ function Cart() {
                         +
                       </button>
 
-                      <button
+                      <button class="remove-btn"
                         onClick={() => removeItem({ id: item._id, userId: user._id })}
-                        style={{ backgroundColor: "#ff4d4d", color: "white" }}
                       >
                         Remove
                       </button>
@@ -106,7 +105,7 @@ function Cart() {
                     borderRadius: "10px",
                     padding: "20px",
                     position: "sticky",
-                    top: "20px",
+                    top: "115px",
                   }}
                 >
                   <h3>Order Summary</h3>

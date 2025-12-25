@@ -20,7 +20,7 @@ function Dashboard() {
        <div className="card-container">
          <Link to="/products" className="card-link">
            <div className="card">
-             <img src="/images/bow.jpeg" alt="Crochet Hat" />
+             <img src="/images/bow.png" alt="Crochet Hat" />
              <h3>Cozy Crochet Hat</h3>
              <p>Soft, warm, and handmade with love.</p>
            </div>
@@ -28,7 +28,7 @@ function Dashboard() {
 
          <Link to="/products" className="card-link">
            <div className="card">
-             <img src="/images/clip.jpeg" alt="Crochet Bag" />
+             <img src="/images/clip.png" alt="Crochet Bag" />
              <h3>Boho Crochet Bag</h3>
              <p>Perfect for your everyday essentials.</p>
            </div>
@@ -36,7 +36,7 @@ function Dashboard() {
 
          <Link to="/products" className="card-link">
            <div className="card">
-             <img src="/images/earrings.jpeg" alt="Crochet Toy" />
+             <img src="/images/earrings.png" alt="Crochet Toy" />
              <h3>Cute Crochet Toy</h3>
              <p>Wholesome gifts for little hearts.</p>
            </div>
@@ -44,7 +44,7 @@ function Dashboard() {
 
          <Link to="/products" className="card-link">
                     <div className="card">
-                      <img src="/images/clip.jpeg" alt="Crochet Bag" />
+                      <img src="/images/clip.png" alt="Crochet Bag" />
                       <h3>Boho Crochet Bag</h3>
                       <p>Perfect for your everyday essentials.</p>
                     </div>

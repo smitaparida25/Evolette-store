@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useQuery, useMutation } from "convex/react";
+import { Link } from "react-router-dom";
 
 function ProductPage() {
   const { productId } = useParams();
@@ -19,50 +20,26 @@ function ProductPage() {
   };
 
   return (
-    <div style={{ maxWidth: "900px", margin: "50px auto", padding: "20px" }}>
+    <div>
+        <Link to="/" className="logo-link">Evolette</Link>
+        <div className="product-image-container">
+                </div>
       <div style={{ display: "flex", gap: "40px" }}>
-        <img
-          src={product.imageUrl}
-          alt={product.name}
-          style={{
-            width: "350px",
-            height: "350px",
-            objectFit: "cover",
-            borderRadius: "10px",
-          }}
-        />
 
-        <div>
-          <h1>{product.name}</h1>
-          <p style={{ fontSize: "20px", fontWeight: "bold" }}>
-            ₹{product.price}
-          </p>
+        <div className="product-description-container">
+          <div className="product-info">
+            <h1 className="product-title">{product.name}</h1>
+            <p className="product-price">₹{product.price}</p>
+            <p className="product-desc">{product.description}</p>
+          </div>
 
-          <p style={{ margin: "15px 0" }}>{product.description}</p>
-
-          <p>
-            Status:{" "}
-            <span style={{ color: product.quantity > 0 ? "green" : "red" }}>
-              {product.quantity > 0 ? "In Stock" : "Out of Stock"}
-            </span>
-          </p>
-
-          {product.quantity > 0 && (
-            <button
-              onClick={handleAddToCart}
-              style={{
-                marginTop: "20px",
-                padding: "10px 20px",
-                background: "#4caf50",
-                color: "white",
-                borderRadius: "5px",
-                cursor: "pointer",
-              }}
-            >
+          <div className="product-cta">
+            <button className="add-to-cart-btn">
               Add to Cart
             </button>
-          )}
+          </div>
         </div>
+
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ export default defineSchema({
     price: v.number(),
     quantity: v.number(),
     imageUrl: v.string(),
+    description: v.string(),
   }),
 
   cartItems: defineTable({
@@ -23,4 +24,18 @@ export default defineSchema({
       userId: v.id("users"),
       productId: v.id("products"),
       }),
+
+   orders: defineTable({
+      userId: v.id("users"),
+      status: v.string(),
+      totalAmount: v.number(),
+      createdAt: v.number(),
+    }),
+
+    orderItems: defineTable({
+      orderId: v.id("orders"),
+      productId: v.id("products"),
+      quantity: v.number(),
+      priceAtTime: v.number(),
+    }),
 });
