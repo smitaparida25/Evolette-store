@@ -26,17 +26,16 @@ function Products() {
   return (
     <div style={{ maxWidth: "900px", margin: "50px auto", padding: "0 20px" }}>
       <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "10px" }}>
-          <input
-            type="text"
-            placeholder="Search products..."
-            onChange={() => {}}
-            style={{
-              padding: "10px",
-              width: "300px",
-              fontSize: "15px",
-              marginRight: "250px",
-            }}
-          />
+          <form className="search-box">
+            <input
+              type="text"
+              placeholder=" "
+              onChange={() => {}}
+            />
+            <button type="reset" />
+          </form>
+
+
 
         <Link to="/wishlist">
                         <button className="cart-btn">Wishlist</button>

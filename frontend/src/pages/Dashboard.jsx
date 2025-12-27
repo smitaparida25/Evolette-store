@@ -73,15 +73,32 @@ function Dashboard() {
          </ul>
        </div>
 
-       <div className="process-section">
-         <h2>How It’s Made</h2>
-         <div className="process-steps">
-           <span>Designed by hand</span>
-           <span>Crocheted stitch by stitch</span>
-           <span>Quality checked</span>
-           <span>Carefully packed</span>
-         </div>
-       </div>
+      <div className="process-section">
+        <h2>How It’s Made</h2>
+
+        <div className="process-steps">
+          <div className="step">
+            <img src="/images/design.jpg" alt="Designed by hand" />
+            <span>Designed by hand</span>
+          </div>
+
+          <div className="step">
+            <img src="/images/crochet.jpg" alt="Crocheted stitch by stitch" />
+            <span>Crocheted stitch by stitch</span>
+          </div>
+
+          <div className="step">
+            <img src="/images/quality.jpg" alt="Quality checked" />
+            <span>Quality checked</span>
+          </div>
+
+          <div className="step">
+            <img src="/images/pack.jpg" alt="Carefully packed" />
+            <span>Carefully packed</span>
+          </div>
+        </div>
+      </div>
+
 
        <div className="cta-section">
          <h2>Ready to find your favorite?</h2>

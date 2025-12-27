@@ -23,7 +23,16 @@ function ProductPage() {
     <div>
         <Link to="/" className="logo-link">Evolette</Link>
         <div className="product-image-container">
-                </div>
+            <img
+                src={product.imageUrl}
+                alt={product.name}
+                className="product-image"
+              />
+
+              <button className="360-view">
+                360°
+              </button>
+        </div>
       <div style={{ display: "flex", gap: "40px" }}>
 
         <div className="product-description-container">
