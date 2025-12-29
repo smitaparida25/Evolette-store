@@ -25,17 +25,7 @@ function Products() {
 
   return (
     <div style={{ maxWidth: "900px", margin: "50px auto", padding: "0 20px" }}>
-      <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "10px" }}>
-          <form className="search-box">
-            <input
-              type="text"
-              placeholder=" "
-              onChange={() => {}}
-            />
-            <button type="reset" />
-          </form>
-
-
+      <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "36px" }}>
 
         <Link to="/wishlist">
                         <button className="cart-btn">Wishlist</button>
@@ -44,9 +34,6 @@ function Products() {
                   <button className="cart-btn">🛒 Cart</button>
                 </Link>
       </div>
-
-
-      <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Products</h2>
 
       {products.length === 0 ? (
         <p>No products available.</p>
@@ -108,7 +95,6 @@ function Products() {
                 key={product._id}
                 style={{
                   border: "1px solid #ddd",
-                  borderRadius: "10px",
                   padding: "15px",
                   textAlign: "center",
                   boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
