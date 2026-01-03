@@ -7,19 +7,18 @@ export const createOrderFromCart = mutation({
     handler: async(ctx, {userId}) =>{
         if(!userId) throw new Error("No userId");
 
-        const cartItems = await ctx.db.query("cartItems").filter((q) =>q.eq.(q.field("userId"), userId)).collect();
+        const cartItems = await ctx.db.query("cartItems").filter((q) =>q.eq(q.field("userId"), userId)).collect();
 
         if(cartItems.length == 0) throw new Error("cart is empty");
 
         let totalAmount = 0;
         for(const item of cartItems){
-            const product = ctx.db.get(item.productId);
+            const product = await ctx.db.get(item.productId);
             if(!product) throw new Error("Product not found.");
             totalAmount += product.price * item.quantity;
             }
-        }
 
-        const orderId = ctx.db.insert("orders",{
+        const orderId = await ctx.db.insert("orders",{
             userId,
             status:"PENDING",
             totalAmount,

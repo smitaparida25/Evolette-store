@@ -493,11 +493,13 @@ button.remove-btn:active::before {
   font-family: "Playfair Display", serif;
 }
 
+
+
 .product-description-container {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 33pc;
+  gap: 61pc;
 }
 
 .product-info {
@@ -532,6 +534,12 @@ button.remove-btn:active::before {
 
 .add-to-cart-btn:hover {
   background: #2b2a2a;
+}
+
+button.btn-360-view {
+  position: absolute;
+  margin-left: 78pc;
+  margin-top: 16px;
 }
 
 .price {

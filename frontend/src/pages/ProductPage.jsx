@@ -2,17 +2,23 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useQuery, useMutation } from "convex/react";
 import { Link } from "react-router-dom";
+import "../App.css";
 
 function ProductPage() {
   const { productId } = useParams();
 
+
   const product = useQuery("products:getProductById", { productId });
+
   const addToCart = useMutation("cart:addToCart");
+  if (!product) return <p>Loading...</p>;
+  const imageSrc = product.imageUrl.trim().startsWith("/")
+                  ? product.imageUrl.trim()
+                  : `/${product.imageUrl.trim()}`;
 
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user?._id;
 
-  if (!product) return <p>Loading...</p>;
 
   const handleAddToCart = async () => {
     if (!user) return alert("Please log in first.");
@@ -23,13 +29,16 @@ function ProductPage() {
     <div>
         <Link to="/" className="logo-link">Evolette</Link>
         <div className="product-image-container">
+
+
+
             <img
-                src={product.imageUrl}
+                src={imageSrc}
                 alt={product.name}
                 className="product-image"
               />
 
-              <button className="360-view">
+              <button className="btn-360-view">
                 360°
               </button>
         </div>
