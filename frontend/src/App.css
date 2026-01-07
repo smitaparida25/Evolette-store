@@ -538,10 +538,9 @@ button.remove-btn:active::before {
 
 button.btn-360-view {
   position: absolute;
-  margin-left: 78pc;
+  margin-left: 60pc;
   margin-top: 16px;
 }
-
 .price {
   font-size: 0.85rem;
   font-weight: 500;

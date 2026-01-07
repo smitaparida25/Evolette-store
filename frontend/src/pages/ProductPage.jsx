@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 import "../App.css";
 
 function ProductPage() {
-  const { productId } = useParams();
-
+  const { productId } = useParams(); // use params returns an object, braces is for object destructuring, here we're making a variable productId which holds the value of product id. it's the same as const productId = useParams().productId;
 
   const product = useQuery("products:getProductById", { productId });
 
@@ -19,7 +18,6 @@ function ProductPage() {
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user?._id;
 
-
   const handleAddToCart = async () => {
     if (!user) return alert("Please log in first.");
     await addToCart({ productId: product._id, userId });
@@ -29,9 +27,6 @@ function ProductPage() {
     <div>
         <Link to="/" className="logo-link">Evolette</Link>
         <div className="product-image-container">
-
-
-
             <img
                 src={imageSrc}
                 alt={product.name}
@@ -52,9 +47,10 @@ function ProductPage() {
           </div>
 
           <div className="product-cta">
-            <button className="add-to-cart-btn">
+            <button className="add-to-cart-btn" onClick={handleAddToCart}>
               Add to Cart
             </button>
+
           </div>
         </div>
 
