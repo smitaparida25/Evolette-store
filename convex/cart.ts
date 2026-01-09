@@ -91,16 +91,16 @@ export const getCart = query({
 });
 
 export const getCartItem = query({
-    args: {userId : v.string(),
-        productId: v.string()
+    args: {userId : v.id("users"),
+        productId: v.id("products")
         },
         handler: async (ctx, {userId, productId}) => {
             const item = await ctx.db
             .query("cartItems")
             .filter(q => q.eq(q.field("userId"), userId))
             .filter(q => q.eq(q.field("productId"), productId))
-            .collect()
             .first();
+            // collect returns an array and first is the query method and not array's
             return item;
         }
     // filter can only have one condition, use multiple filters. convex don't have and function because database cannot execute the jsx at run time for database, everything must exist.
