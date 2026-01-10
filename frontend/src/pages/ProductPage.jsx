@@ -64,7 +64,12 @@ function ProductPage() {
                 }>+</button>
               </div>
             )}
+        <p className="delivery-info">
+                      <strong>Estimated complimentary Express delivery</strong><br />
+                      or Collect in Store: Wed, Jan 14 – Thu, Jan 15
+                    </p>
           </div>
+
         </div>
 
       </div>

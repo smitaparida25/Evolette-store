@@ -489,6 +489,11 @@ button.remove-btn:active::before {
   margin-top: 39px;
 }
 
+.product-image{
+    margin-left: 37pc;
+    margin-top: 3pc;
+}
+
 .product-title {
   font-family: "Playfair Display", serif;
 }
@@ -499,7 +504,7 @@ button.remove-btn:active::before {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 61pc;
+  gap: 58pc;
 }
 
 .product-info {
@@ -509,6 +514,8 @@ button.remove-btn:active::before {
 
 .product-cta {
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
   margin-top: 22px;
 }
 
@@ -538,7 +545,7 @@ button.remove-btn:active::before {
 
 button.btn-360-view {
   position: absolute;
-  margin-left: 60pc;
+  margin-left: 24pc;
   margin-top: 16px;
 }
 .price {
