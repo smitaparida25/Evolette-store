@@ -12,6 +12,8 @@ export default defineSchema({
     quantity: v.number(),
     imageUrl: v.string(),
     description: v.string(),
+    productDetails: v.string(),
+    materialsAndCare: v.string(),
   }),
 
   cartItems: defineTable({

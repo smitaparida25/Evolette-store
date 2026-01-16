@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery, useMutation } from "convex/react";
 import { Link } from "react-router-dom";
@@ -9,6 +10,10 @@ function ProductPage() {
       const userId = user?._id;
   const { productId } = useParams(); // use params returns an object, braces is for object destructuring, here we're making a variable productId which holds the value of product id. it's the same as const productId = useParams().productId;
 
+  const sections = {details: "details", materials:"materials", commitment:"commitment"};
+  // key value pairs should be an object and for defining objects we use {}
+
+  const [openSection, setOpenSection] = useState(null); // openSection is a state variable, it can store any value; setOpenSection is a function that updates the state; in starting it's null.
   const product = useQuery("products:getProductById", { productId });
   const cartItem = useQuery("cart:getCartItem",userId ? { userId, productId } : "skip");
   const updateQuantity = useMutation("cart:updateQuantity");
@@ -46,6 +51,25 @@ function ProductPage() {
             <h1 className="product-title">{product.name}</h1>
             <p className="product-price">₹{product.price}</p>
             <p className="product-desc">{product.description}</p>
+
+            <div className="section">
+                <div className = "header" onClick={() => setOpenSection(openSection == "details" ? "null" : details)}>
+                    details {openSection == "details" ? "▲" : "▼"}
+                    </div>
+                    {openSection === "details" && <div className="content">{product.productDetails}</div>}
+                </div>
+                <div className="section">
+                <div className = "header" onClick={() => setOpenSection(openSection == "details" ? "null" : details)}>
+                    details {openSection == "details" ? "▲" : "▼"}
+                    </div>
+                    {openSection === "details" && <div className="content">{product.productDetails}</div>}
+                </div>
+                <div className="section">
+                <div className = "header" onClick={() => setOpenSection(openSection == "details" ? "null" : details)}>
+                    details {openSection == "details" ? "▲" : "▼"}
+                    </div>
+                    {openSection === "details" && <div className="content">{product.productDetails}</div>}
+                </div>
           </div>
 
           <div className="product-cta">
