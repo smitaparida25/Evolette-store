@@ -10,7 +10,12 @@ function ProductPage() {
       const userId = user?._id;
   const { productId } = useParams(); // use params returns an object, braces is for object destructuring, here we're making a variable productId which holds the value of product id. it's the same as const productId = useParams().productId;
 
-  const sections = {details: "details", materials:"materials", commitment:"commitment"};
+  const SECTIONS = {
+    DETAILS: "details",
+    MATERIALS: "materials",
+    COMMITMENT: "commitment",
+  };
+
   // key value pairs should be an object and for defining objects we use {}
 
   const [openSection, setOpenSection] = useState(null); // openSection is a state variable, it can store any value; setOpenSection is a function that updates the state; in starting it's null.
@@ -53,22 +58,22 @@ function ProductPage() {
             <p className="product-desc">{product.description}</p>
 
             <div className="section">
-                <div className = "header" onClick={() => setOpenSection(openSection == "details" ? "null" : details)}>
-                    details {openSection == "details" ? "▲" : "▼"}
+                <div className = "header" onClick={() => setOpenSection(openSection === SECTIONS.DETAILS ? null : SECTIONS.DETAILS)}>
+                    Details {openSection === SECTIONS.DETAILS ? "▲" : "▼"}
                     </div>
-                    {openSection === "details" && <div className="content">{product.productDetails}</div>}
+                    {openSection === SECTIONS.DETAILS && <div className="content">{product.productDetails}</div>}
                 </div>
                 <div className="section">
-                <div className = "header" onClick={() => setOpenSection(openSection == "details" ? "null" : details)}>
-                    details {openSection == "details" ? "▲" : "▼"}
+                <div className = "header" onClick={() => setOpenSection(openSection === SECTIONS.MATERIALS ? null : SECTIONS.MATERIALS)}>
+                    Materials {openSection === SECTIONS.MATERIALS ? "▲" : "▼"}
                     </div>
-                    {openSection === "details" && <div className="content">{product.productDetails}</div>}
+                    {openSection === SECTIONS.MATERIALS && <div className="content">{"Crafted using high-quality yarn, crochet fabric is soft, breathable, and lightweight. The looped structure gives it natural flexibility and texture, making it comfortable to wear while maintaining durability and shape."}</div>}
                 </div>
                 <div className="section">
-                <div className = "header" onClick={() => setOpenSection(openSection == "details" ? "null" : details)}>
-                    details {openSection == "details" ? "▲" : "▼"}
+                <div className = "header" onClick={() => setOpenSection(openSection === SECTIONS.COMMITMENT ? null : SECTIONS.COMMITMENT)}>
+                    Commitment {openSection === SECTIONS.COMMITMENT ? "▲" : "▼"}
                     </div>
-                    {openSection === "details" && <div className="content">{product.productDetails}</div>}
+                    {openSection === SECTIONS.COMMITMENT && <div className="content">{"We are committed to thoughtful craftsmanship, responsible sourcing, and enduring quality. Every piece is created with attention to detail and care, ensuring it meets the highest standards of design, comfort, and longevity."}</div>}
                 </div>
           </div>
 

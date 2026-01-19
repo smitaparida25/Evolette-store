@@ -504,7 +504,7 @@ button.remove-btn:active::before {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 58pc;
+  gap: 40pc;
 }
 
 .product-info {
@@ -517,6 +517,7 @@ button.remove-btn:active::before {
   display: flex;
   flex-direction: column;
   margin-top: 22px;
+  margin-right: 45px;
 }
 
 .add-to-cart-btn {
