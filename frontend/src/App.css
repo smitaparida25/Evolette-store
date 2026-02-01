@@ -504,12 +504,13 @@ button.remove-btn:active::before {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 40pc;
+  gap: 400px;
 }
 
 .product-info {
   flex: 1;
   margin-left: 45px;
+  width: 607px;
 }
 
 .product-cta {
@@ -555,5 +556,61 @@ button.btn-360-view {
   color: #9a9a9a;
 }
 
+.product-add-to-cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+
+
+  color: #7e97b8;
+  background-color: #e0e8ef;
+
+  border: 2px solid rgba(255, 255, 255, 0.333);
+  border-radius: 40px;
+
+  padding: 10px 20px 16px 28px;
+
+  transition: 0.2s ease;
+  box-shadow:
+    -4px -2px 16px 0px #ffffff,
+     4px  2px 16px 0px rgb(95 157 231 / 48%);
+}
+
+.product-add-to-cart:hover {
+  color: #516d91;
+  background-color: #e5edf5;
+  box-shadow:
+    -2px -1px 8px 0px #ffffff,
+     2px  1px 8px 0px rgb(95 157 231 / 48%);
+}
+
+.product-add-to-cart:active {
+  box-shadow: none;
+}
+
+.accordion {
+  max-width: 600px;
+  font-family: system-ui, sans-serif;
+}
+
+.section {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+ .open {
+   transform: rotate(180deg);
+   transition: transform 0.2s ease;
+ }
 
 

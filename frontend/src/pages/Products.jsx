@@ -152,19 +152,25 @@ function Products() {
                                     </button>
                                   </div>
                                 ) : (
-                                  <button
-                                    onClick={handleAddToCart}
-                                    style={{
-                                      marginTop: "10px",
-                                      padding: "8px 12px",
-                                      background: "#4caf50",
-                                      color: "white",
-                                      borderRadius: "5px",
-                                      cursor: "pointer",
-                                    }}
-                                  >
-                                    Add to Cart
-                                  </button>
+                                 <button
+                                   className="product-add-to-cart"
+                                   onClick={handleAddToCart}
+                                 >
+                                   <svg
+                                     viewBox="0 0 24 24"
+                                     width="24"
+                                     height="24"
+                                     stroke="currentColor"
+                                     strokeWidth="2"
+                                     fill="none"
+                                     strokeLinecap="round"
+                                     strokeLinejoin="round"
+                                   >
+                                     <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                                   </svg>
+                                   Add to Cart
+                                 </button>
+
                                 )}
 
 

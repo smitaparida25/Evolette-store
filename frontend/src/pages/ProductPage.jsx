@@ -1,8 +1,8 @@
-import React from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery, useMutation } from "convex/react";
 import { Link } from "react-router-dom";
+import { ChevronDown } from "lucide-react";
 import "../App.css";
 
 function ProductPage() {
@@ -57,24 +57,39 @@ function ProductPage() {
             <p className="product-price">₹{product.price}</p>
             <p className="product-desc">{product.description}</p>
 
+            <section className = "accordion">
             <div className="section">
                 <div className = "header" onClick={() => setOpenSection(openSection === SECTIONS.DETAILS ? null : SECTIONS.DETAILS)}>
-                    Details {openSection === SECTIONS.DETAILS ? "▲" : "▼"}
+                    <span>Details</span>
+                    <ChevronDown
+                      size={16}
+                      className={openSection === SECTIONS.DETAILS ? "open" : ""}
+                    />
                     </div>
                     {openSection === SECTIONS.DETAILS && <div className="content">{product.productDetails}</div>}
                 </div>
                 <div className="section">
                 <div className = "header" onClick={() => setOpenSection(openSection === SECTIONS.MATERIALS ? null : SECTIONS.MATERIALS)}>
-                    Materials {openSection === SECTIONS.MATERIALS ? "▲" : "▼"}
+                    <span>Materials</span>
+                    <ChevronDown
+                    size={16}
+                    className={openSection === SECTIONS.MATERIALS ? "▲" : "▼"}
+                    />
                     </div>
                     {openSection === SECTIONS.MATERIALS && <div className="content">{"Crafted using high-quality yarn, crochet fabric is soft, breathable, and lightweight. The looped structure gives it natural flexibility and texture, making it comfortable to wear while maintaining durability and shape."}</div>}
                 </div>
+
                 <div className="section">
                 <div className = "header" onClick={() => setOpenSection(openSection === SECTIONS.COMMITMENT ? null : SECTIONS.COMMITMENT)}>
-                    Commitment {openSection === SECTIONS.COMMITMENT ? "▲" : "▼"}
+                    <span>Commitment</span>
+                    <ChevronDown
+                    size= {16}
+                    className={openSection === SECTIONS.COMMITMENT ? "▲" : "▼"}
+                    />
                     </div>
                     {openSection === SECTIONS.COMMITMENT && <div className="content">{"We are committed to thoughtful craftsmanship, responsible sourcing, and enduring quality. Every piece is created with attention to detail and care, ensuring it meets the highest standards of design, comfort, and longevity."}</div>}
                 </div>
+                </section>
           </div>
 
           <div className="product-cta">
