@@ -613,4 +613,9 @@ button.btn-360-view {
    transition: transform 0.2s ease;
  }
 
+ .you-may-also-like-section{
+ display: flex;
+ justify-content: center;
+ }
+
 

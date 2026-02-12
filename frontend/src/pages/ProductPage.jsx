@@ -114,10 +114,15 @@ function ProductPage() {
                     </p>
           </div>
 
-        </div>
+      </div>
+
+      </div>
+      <div className="you-may-also-like-section">
+                    <h1>You may also like</h1>
 
       </div>
     </div>
+
   );
 }
 

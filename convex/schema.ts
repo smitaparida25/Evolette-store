@@ -40,4 +40,11 @@ export default defineSchema({
       quantity: v.number(),
       priceAtTime: v.number(),
     }),
+
+    interaction: defineTable({
+        userId: v.id("users"),
+        productId: v.id("products"),
+        interaction_type: v.string(),
+        timestamp: v.number(),
+        }),
 });
