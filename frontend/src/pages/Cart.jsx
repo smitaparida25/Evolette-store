@@ -112,6 +112,7 @@ function Cart() {
                   <p>Total Items: {totalQuantity}</p>
                   <p>Total Price: ₹{totalPrice}</p>
 
+                  <Link to="/checkout">
                   <button
                     style={{
                       width: "100%",
@@ -125,6 +126,7 @@ function Cart() {
                   >
                     Checkout
                   </button>
+                      </Link>
                 </div>
               </div>
             </div>

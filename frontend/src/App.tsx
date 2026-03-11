@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import Wishlist from "./pages/Wishlist";
 import ProductPage from "./pages/ProductPage";
 import { useUserStore } from "./store/useUserStore";
+import Checkout from "./pages/Checkout";
 
 function App() {
   const loadUser = useUserStore((s) => s.loadUserFromStorage);
@@ -26,6 +27,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/product/:productId" element={<ProductPage />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </BrowserRouter>
   );

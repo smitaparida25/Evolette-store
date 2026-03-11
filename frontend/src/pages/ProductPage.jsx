@@ -73,7 +73,7 @@ function ProductPage() {
                     <span>Materials</span>
                     <ChevronDown
                     size={16}
-                    className={openSection === SECTIONS.MATERIALS ? "▲" : "▼"}
+                    className={openSection === SECTIONS.MATERIALS ? "open" : ""}
                     />
                     </div>
                     {openSection === SECTIONS.MATERIALS && <div className="content">{"Crafted using high-quality yarn, crochet fabric is soft, breathable, and lightweight. The looped structure gives it natural flexibility and texture, making it comfortable to wear while maintaining durability and shape."}</div>}
@@ -84,7 +84,7 @@ function ProductPage() {
                     <span>Commitment</span>
                     <ChevronDown
                     size= {16}
-                    className={openSection === SECTIONS.COMMITMENT ? "▲" : "▼"}
+                    className={openSection === SECTIONS.COMMITMENT ? "open" : ""}
                     />
                     </div>
                     {openSection === SECTIONS.COMMITMENT && <div className="content">{"We are committed to thoughtful craftsmanship, responsible sourcing, and enduring quality. Every piece is created with attention to detail and care, ensuring it meets the highest standards of design, comfort, and longevity."}</div>}
@@ -119,7 +119,20 @@ function ProductPage() {
       </div>
       <div className="you-may-also-like-section">
                     <h1>You may also like</h1>
-
+                    <div className="you-may-also-like-section-cards">
+                        <div className="you-may-also-like-card">
+                            <img src="/images/earrings.jpeg" alt="product"/>
+                            </div>
+                        <div className="you-may-also-like-card">
+                            <img src="/images/earrings.jpeg" alt="product"/>
+                        </div>
+                        <div className="you-may-also-like-card">
+                            <img src="/images/earrings.jpeg" alt="product"/>
+                        </div>
+                        <div className="you-may-also-like-card">
+                            <img src="/images/earrings.jpeg" alt="product"/>
+                        </div>
+                        </div>
       </div>
     </div>
 

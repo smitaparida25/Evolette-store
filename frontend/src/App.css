@@ -485,12 +485,12 @@ button.remove-btn:active::before {
 .product-image-container {
   background-color: #e0e0e0;
   height: 30pc;
-  width: 1417px;
+  width: 101pc;
   margin-top: 39px;
 }
 
 .product-image{
-    margin-left: 37pc;
+    margin-left: 44pc;
     margin-top: 3pc;
 }
 
@@ -498,13 +498,11 @@ button.remove-btn:active::before {
   font-family: "Playfair Display", serif;
 }
 
-
-
 .product-description-container {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 400px;
+  gap: 39pc;
 }
 
 .product-info {
@@ -547,7 +545,7 @@ button.remove-btn:active::before {
 
 button.btn-360-view {
   position: absolute;
-  margin-left: 24pc;
+  margin-left: 28pc;
   margin-top: 16px;
 }
 .price {
@@ -615,7 +613,21 @@ button.btn-360-view {
 
  .you-may-also-like-section{
  display: flex;
- justify-content: center;
+ flex-direction: column;
+ align-items: center;
  }
 
+ .you-may-also-like-section-cards{
+ display: flex;
+ gap: 20px;
+ }
 
+ .you-may-also-like-card img{
+width: 100%;
+height: 400px;
+ }
+
+ .checkout{
+ display: flex;
+ gap: 60pc;
+ }
