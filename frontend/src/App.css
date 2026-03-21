@@ -627,7 +627,37 @@ width: 100%;
 height: 400px;
  }
 
- .checkout{
- display: flex;
- gap: 30pc;
- }
+.checkout {
+  display: flex;
+  gap: 40px;
+  padding: 40px;
+  max-width: 95pc;
+  margin: auto;
+}
+
+.shipping form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.shipping {
+width: 65pc;
+}
+
+.shipping input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.payment-method {
+  margin-top: 25px;
+  border: 1px solid #ddd;
+  padding: 18px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

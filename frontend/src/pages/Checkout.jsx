@@ -1,4 +1,14 @@
+import React from "react";
+import { useQuery, useMutation } from "convex/react";
+import { useUserStore } from "../store/useUserStore";
+
 function Checkout() {
+    const user = useUserStore((s) => s.user);
+    const cartItems = useQuery(
+        "cart:getCart",
+        user ? {userId : user._id} : "skip"
+        );
+    const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
     return(
         <div className="checkout">
             <div className="shipping">
@@ -23,33 +33,14 @@ function Checkout() {
                                 placeholder="Enter UPI ID (example@upi)"
                                 className="upi-input"
                               />
+                              <button className="verify-btn">
+                                    Verify
+                                  </button>
                         </div>
             </div>
             <div className="summary">
               <h2>Order Summary</h2>
-
-              <div className="item">
-                <span>Crochet Top × 1</span>
-                <span>₹1200</span>
-              </div>
-
-              <div className="line"></div>
-
-              <div className="price-row">
-                <span>Subtotal</span>
-                <span>₹1200</span>
-              </div>
-
-              <div className="price-row">
-                <span>Shipping</span>
-                <span>₹50</span>
-              </div>
-
-              <div className="price-row total">
-                <span>Total</span>
-                <span>₹1250</span>
-              </div>
-
+               <p>Total Price: ₹{totalPrice}</p>
               <button className="place-order">Place Order</button>
             </div>
         </div>
