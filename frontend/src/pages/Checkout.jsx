@@ -1,25 +1,52 @@
 import React from "react";
 import { useQuery } from "convex/react";
 import { useUserStore } from "../store/useUserStore";
+import {useMutation} from "convex/react";
 
 function Checkout() {
     const user = useUserStore((s) => s.user);
+
+    const [name, setName] = useState("");
+    const [phone, setPhone] = useState("");
+    const [street, setStreet] = useState("");
+    const [city, setCity] = useState("");
+    const [state, setState] = useState("");
+    const [pincode, setPincode] = useState("");
+
     const cartItems = useQuery(
         "cart:getCart",
         user ? {userId : user._id} : "skip"
         );
     const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+    const createOrder = useMutation("orders:createOrder");
+
+    const handlePlaceOrder = async() => {
+        const orderId = await createOrder({
+            userId: user._id,
+            address: {
+                  name,
+                  phone,
+                  street,
+                  city,
+                  state,
+                  pincode,
+                },
+              });
+          console.log("Order created:", orderId);
+        };
+
     return(
         <div className="checkout">
             <div className="shipping">
                 <h2>Shipping Address</h2>
                 <form>
-                    <input type="text" placeholder="Full Name" />
-                    <input type="tel" placeholder="Phone Number" />
-                    <input type="text" placeholder="Address" />
-                    <input type="text" placeholder="City" />
-                    <input type="text" placeholder="State" />
-                    <input type="text" placeholder="Pincode" />
+                    <input type="text" placeholder="Full Name" value={name} onChange={(e) => setName(e.target.value)}/>
+                    <input type="tel" placeholder="Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)}/>
+                    <input type="text" placeholder="Street" value={street} onChange={(e) => setStreet(e.target.value)}/>
+                    <input type="text" placeholder="City" value={city} onChange={(e) => setCity(e.target.value)}/>
+                    <input type="text" placeholder="State" value={state} onChange={(e) => setState(e.target.value)}/>
+                    <input type="text" placeholder="Pincode" value={pincode} onChange={(e) => setPincode(e.target.value)}/>
                 </form>
 
                 <h2> Payment Method </h2>
