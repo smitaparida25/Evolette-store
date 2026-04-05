@@ -32,6 +32,7 @@ export default defineSchema({
       status: v.string(),
       totalAmount: v.number(),
       createdAt: v.number(),
+      address: v.string(),
     }),
 
     orderItems: defineTable({

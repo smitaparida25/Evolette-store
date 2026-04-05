@@ -1,5 +1,5 @@
 import React from "react";
-import { useQuery, useMutation } from "convex/react";
+import { useQuery } from "convex/react";
 import { useUserStore } from "../store/useUserStore";
 
 function Checkout() {

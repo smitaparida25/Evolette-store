@@ -1,38 +1,32 @@
+// create order in database
+// create orderItems in database
+// clear cart
+
 import { mutation } from "./_generated/server";
 import { v } from "convex/values";
 
+export const createOrder = mutation({
+  args: {
+    userId: v.id("users"),
+    address: v.object({
+      name: v.string(),
+      phone: v.string(),
+      street: v.string(),
+      city: v.string(),
+      state: v.string(),
+      pincode: v.string(),
+    }),
+  },
 
-export const createOrderFromCart = mutation({
-    args: {userId: v.string()},
-    handler: async(ctx, {userId}) =>{
-        if(!userId) throw new Error("No userId");
+  handler: async (ctx, args) => {
+    const orderId = await ctx.db.insert("orders", {
+      userId: args.userId,
+      status: "PLACED",
+      totalAmount: 0,
+      address: args.address,
+      createdAt: Date.now(),
+    });
 
-        const cartItems = await ctx.db.query("cartItems").filter((q) =>q.eq(q.field("userId"), userId)).collect();
-
-        if(cartItems.length == 0) throw new Error("cart is empty");
-
-        let totalAmount = 0;
-        for(const item of cartItems){
-            const product = await ctx.db.get(item.productId);
-            if(!product) throw new Error("Product not found.");
-            totalAmount += product.price * item.quantity;
-            }
-
-        const orderId = await ctx.db.insert("orders",{
-            userId,
-            status:"PENDING",
-            totalAmount,
-            createdAt: Date.now(),
-            });
-
-        for(const item of cartItems){
-            const product = await ctx.db.get(item.productId);
-             await ctx.db.insert("orderItems", {
-                    orderId,
-                    productId: item.productId,
-                    quantity: item.quantity,
-                    priceAtTime: product!.price,
-                  });
-                }
-            }
-    })
+    return orderId;
+  },
+});
