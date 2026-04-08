@@ -1,5 +1,6 @@
 import React from "react";
 import { useQuery } from "convex/react";
+import { useState } from "react";
 import { useUserStore } from "../store/useUserStore";
 import {useMutation} from "convex/react";
 
@@ -68,7 +69,7 @@ function Checkout() {
             <div className="summary">
               <h2>Order Summary</h2>
                <p>Total Price: ₹{totalPrice}</p>
-              <button className="place-order">Place Order</button>
+              <button onClick={handlePlaceOrder} className="place-order">Place Order</button>
             </div>
         </div>
         );

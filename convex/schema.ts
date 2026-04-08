@@ -32,7 +32,14 @@ export default defineSchema({
       status: v.string(),
       totalAmount: v.number(),
       createdAt: v.number(),
-      address: v.string(),
+      address: v.object({
+        name: v.string(),
+        phone: v.string(),
+        street: v.string(),
+        city: v.string(),
+        state: v.string(),
+        pincode: v.string(),
+      })
     }),
 
     orderItems: defineTable({
@@ -49,3 +56,5 @@ export default defineSchema({
         timestamp: v.number(),
         }),
 });
+
+
