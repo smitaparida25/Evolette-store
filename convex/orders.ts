@@ -19,15 +19,22 @@ export const createOrder = mutation({
   },
 
   handler: async (ctx, args) => {
-      // calculate total
       const cartItems = await ctx.db.query("cartItems").withIndex("by_userId", (q) => q.eq("userId", args.userId)).collect();
 
+      // calculate totalAmount
+      let totalPrice = 0;
+
+      for (const item of cartItems) {
+        const product = await ctx.db.get(item.productId);
+        if (!product) continue;
+        totalPrice += product.price * item.quantity;
+      }
 
       // insert into order table
     const orderId = await ctx.db.insert("orders", {
       userId: args.userId,
       status: "PLACED",
-      totalAmount: 0,
+      totalAmount: totalPrice,
       address: args.address,
       createdAt: Date.now(),
     });
