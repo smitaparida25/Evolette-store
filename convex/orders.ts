@@ -37,7 +37,7 @@ export const createOrder = mutation({
         const product = await ctx.db.get(item.productId);
         if (!product) {
             await ctx.db.delete(item._id);
-          throw new Error("Product not found");
+            continue;
         }
         await ctx.db.insert("orderItems", {
             orderId,
