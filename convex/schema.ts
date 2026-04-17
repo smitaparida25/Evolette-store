@@ -16,11 +16,12 @@ export default defineSchema({
     materialsAndCare: v.string(),
   }),
 
-  cartItems: defineTable({
-    productId: v.id("products"),
-    quantity: v.number(),
-    userId: v.id("users"),
-  }),
+ cartItems: defineTable({
+   userId: v.id("users"),
+   productId: v.id("products"),
+   quantity: v.number(),
+ })
+ .index("by_userId", ["userId"]),
 
   wishlist: defineTable({
       userId: v.id("users"),

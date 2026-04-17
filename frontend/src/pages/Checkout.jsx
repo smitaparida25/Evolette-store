@@ -38,17 +38,16 @@ function Checkout() {
         };
 
     return(
+        <form onSubmit={handlePlaceOrder}>
         <div className="checkout">
             <div className="shipping">
                 <h2>Shipping Address</h2>
-                <form>
-                    <input type="text" placeholder="Full Name" value={name} onChange={(e) => setName(e.target.value)}/>
-                    <input type="tel" placeholder="Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)}/>
-                    <input type="text" placeholder="Street" value={street} onChange={(e) => setStreet(e.target.value)}/>
-                    <input type="text" placeholder="City" value={city} onChange={(e) => setCity(e.target.value)}/>
-                    <input type="text" placeholder="State" value={state} onChange={(e) => setState(e.target.value)}/>
-                    <input type="text" placeholder="Pincode" value={pincode} onChange={(e) => setPincode(e.target.value)}/>
-                </form>
+                    <input type="text" placeholder="Full Name" value={name} onChange={(e) => setName(e.target.value)} required/>
+                    <input type="tel" placeholder="Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)} required/>
+                    <input type="text" placeholder="Street" value={street} onChange={(e) => setStreet(e.target.value)} required/>
+                    <input type="text" placeholder="City" value={city} onChange={(e) => setCity(e.target.value)} required/>
+                    <input type="text" placeholder="State" value={state} onChange={(e) => setState(e.target.value)} required/>
+                    <input type="text" placeholder="Pincode" value={pincode} onChange={(e) => setPincode(e.target.value)} required/>
 
                 <h2> Payment Method </h2>
                     <div className="payment-method">
@@ -72,6 +71,7 @@ function Checkout() {
               <button onClick={handlePlaceOrder} className="place-order">Place Order</button>
             </div>
         </div>
+        </form>
         );
     }
 

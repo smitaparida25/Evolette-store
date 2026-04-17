@@ -19,6 +19,11 @@ export const createOrder = mutation({
   },
 
   handler: async (ctx, args) => {
+      // calculate total
+      const cartItems = await ctx.db.query("cartItems").withIndex("by_userId", (q) => q.eq("userId", args.userId)).collect();
+
+
+      // insert into order table
     const orderId = await ctx.db.insert("orders", {
       userId: args.userId,
       status: "PLACED",
@@ -26,6 +31,22 @@ export const createOrder = mutation({
       address: args.address,
       createdAt: Date.now(),
     });
+
+    // inset into order items table
+    for(const item of cartItems){
+        const product = await ctx.db.get(item.productId);
+        if (!product) {
+            await ctx.db.delete(item._id);
+          throw new Error("Product not found");
+        }
+        await ctx.db.insert("orderItems", {
+            orderId,
+            productId: item.productId,
+            quantity: item.quantity,
+            priceAtTime: product.price,
+            })
+        }
+    // clear cart
 
     return orderId;
   },

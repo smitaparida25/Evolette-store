@@ -75,6 +75,9 @@ export const getCart = query({
     const cartWithProducts = await Promise.all(
       items.map(async (item) => {
         const product = await ctx.db.get(item.productId);
+        if (!product) {
+          return null;
+        }
         return {
           _id: item._id,
           quantity: item.quantity,
@@ -86,7 +89,7 @@ export const getCart = query({
       })
     );
 
-    return cartWithProducts;
+    return cartWithProducts.filter(Boolean);;
   },
 });
 
