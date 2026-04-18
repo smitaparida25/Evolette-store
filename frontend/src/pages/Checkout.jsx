@@ -7,6 +7,8 @@ import {useMutation} from "convex/react";
 function Checkout() {
     const user = useUserStore((s) => s.user);
 
+    const createOrder = useMutation("orders:createOrder");
+
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
     const [street, setStreet] = useState("");
@@ -18,9 +20,10 @@ function Checkout() {
         "cart:getCart",
         user ? {userId : user._id} : "skip"
         );
-    const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    if (!user) return <div>Loading user...</div>;
+    if (cartItems === undefined) return <div>Loading cart...</div>;
 
-    const createOrder = useMutation("orders:createOrder");
+    const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
     const handlePlaceOrder = async() => {
         const orderId = await createOrder({
