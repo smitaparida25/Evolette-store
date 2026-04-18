@@ -68,7 +68,7 @@ function Checkout() {
             <div className="summary">
               <h2>Order Summary</h2>
                <p>Total Price: ₹{totalPrice}</p>
-              <button onClick={handlePlaceOrder} className="place-order">Place Order</button>
+              <button type="submit" className="place-order">Place Order</button>
             </div>
         </div>
         </form>
