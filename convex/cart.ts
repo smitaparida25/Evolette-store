@@ -108,14 +108,3 @@ export const getCartItem = query({
         }
     // filter can only have one condition, use multiple filters. convex don't have and function because database cannot execute the jsx at run time for database, everything must exist.
     });
-
-export const clearCart = mutation({
-    args: {userId : v.id("users"),},
-    handler: async (ctx, {userId}) => {
-        const cartItems = await ctx.db.query("cartItems").withIndex("by_userId", (q) => q.eq("userId", userId)).collect();
-
-        await Promise.all(
-            cartItems.map((item) => ctx.db.delete(item._id))
-            );
-        },
-    });

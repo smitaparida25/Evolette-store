@@ -54,6 +54,9 @@ export const createOrder = mutation({
             })
         }
     // clear cart
+    await Promise.all(
+      cartItems.map((item) => ctx.db.delete(item._id))
+    );
 
     return orderId;
   },
