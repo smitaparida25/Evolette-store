@@ -25,20 +25,19 @@ function Checkout() {
 
     const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-    const handlePlaceOrder = async() => {
-        const orderId = await createOrder({
-            userId: user._id,
-            address: {
-                  name,
-                  phone,
-                  street,
-                  city,
-                  state,
-                  pincode,
-                },
-              });
-          console.log("Order created:", orderId);
-        };
+const handlePlaceOrder = async (e) => {
+  try {
+    const orderId = await createOrder({
+      userId: user._id,
+      address: { name, phone, street, city, state, pincode },
+    });
+
+    console.log("Order created:", orderId);
+  } catch (err) {
+    console.error(err);
+    alert("Cannot place order. Your cart is empty.");
+  }
+};
 
     return(
         <form onSubmit={handlePlaceOrder}>

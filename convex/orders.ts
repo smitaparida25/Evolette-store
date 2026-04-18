@@ -21,6 +21,9 @@ export const createOrder = mutation({
   handler: async (ctx, args) => {
       const cartItems = await ctx.db.query("cartItems").withIndex("by_userId", (q) => q.eq("userId", args.userId)).collect();
 
+      if (!cartItems.length || totalPrice <= 0) {
+        throw new Error("Invalid order: empty cart");
+      }
       // calculate totalAmount
       let totalPrice = 0;
 
