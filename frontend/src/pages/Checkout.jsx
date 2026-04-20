@@ -26,6 +26,7 @@ function Checkout() {
     const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
 const handlePlaceOrder = async (e) => {
+    // prevent loading
     e.preventDefault();
   try {
     const orderId = await createOrder({
