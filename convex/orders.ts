@@ -19,10 +19,20 @@ export const createOrder = mutation({
   },
 
   handler: async (ctx, args) => {
+       const { address } = args;
+      const fields = ["name", "phone", "street", "city", "state", "pincode"];
+
+      for(const field of fields){
+          const value = address[field];
+
+          if(value.trim() == ""){
+              throw new Error("INVALID_ADDRESS");
+              }
+      }
       const cartItems = await ctx.db.query("cartItems").withIndex("by_userId", (q) => q.eq("userId", args.userId)).collect();
 
       if (!cartItems.length) {
-        throw new Error("Invalid order: empty cart");
+        throw new Error("EMPTY_CART");
       }
       // calculate totalAmount
       let totalPrice = 0;
