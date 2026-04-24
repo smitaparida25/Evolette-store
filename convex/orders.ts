@@ -4,6 +4,7 @@
 
 import { mutation } from "./_generated/server";
 import { v } from "convex/values";
+import { ConvexError } from "convex/values";
 
 export const createOrder = mutation({
   args: {
@@ -26,13 +27,13 @@ export const createOrder = mutation({
           const value = address[field];
 
           if(value.trim() == ""){
-              throw new Error("INVALID_ADDRESS");
+              throw new ConvexError({ code: "INVALID_ADDRESS" });
               }
       }
       const cartItems = await ctx.db.query("cartItems").withIndex("by_userId", (q) => q.eq("userId", args.userId)).collect();
 
       if (!cartItems.length) {
-        throw new Error("EMPTY_CART");
+        throw new ConvexError({ code: "EMPTY_CART" });
       }
       // calculate totalAmount
       let totalPrice = 0;

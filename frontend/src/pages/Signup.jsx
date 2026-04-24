@@ -66,8 +66,6 @@ export default function Signup() {
 
         {message && <p>{message}</p>}
       </div>
-
-      <img className="auth-image" src="/images/image.png" alt="visual" />
     </div>
   );
 }

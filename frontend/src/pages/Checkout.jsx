@@ -35,16 +35,22 @@ const handlePlaceOrder = async (e) => {
     });
 
     console.log("Order created:", orderId);
-  }catch (err) {
-     if (err.message === "EMPTY_CART") {
-       alert("Your cart is empty.");
-     } else if (err.message === "INVALID_ADDRESS") {
-       alert("Please fill all address fields properly.");
-     } else {
-       alert("Something went wrong.");
-     }
-   }
-};
+    alert("Order placed successfully!");
+
+  } catch (err) {
+    console.log("FULL ERROR:", err);
+
+    const code = err?.data?.code;
+
+    if (code === "EMPTY_CART") {
+      alert("Your cart is empty.");
+    } else if (code === "INVALID_ADDRESS") {
+      alert("Please fill all address fields properly.");
+    } else {
+      alert("Something went wrong.");
+    }
+  }
+  }
 
     return(
         <form onSubmit={handlePlaceOrder}>
