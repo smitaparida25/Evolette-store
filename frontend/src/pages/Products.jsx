@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery, useMutation } from "convex/react";
 import { Link } from "react-router-dom";
 import "../App.css";
+import { useState } from "react";
 
 function Products() {
   const products = useQuery("products:getProducts");
@@ -15,7 +16,7 @@ function Products() {
                    user ? { userId: user._id } : "skip"
                  );
 
-
+  const [search, setSearch] = useState("");
   const updateQuantity = useMutation("cart:updateQuantity");
   const removeItem = useMutation("cart:removeItem");
 
@@ -26,7 +27,14 @@ function Products() {
   return (
     <div style={{ maxWidth: "900px", margin: "50px auto", padding: "0 20px" }}>
       <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "36px" }}>
+          <input
+            type="text"
+            placeholder="Search products..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
 
+          <button>Search</button>
         <Link to="/wishlist">
                         <button className="cart-btn">Wishlist</button>
         </Link>
@@ -103,8 +111,6 @@ function Products() {
               >
               <Link
                 to={`/product/${product._id}`}
-                target="_blank"
-                  rel="noopener noreferrer"
                 style={{ textDecoration: "none", color: "inherit" }}
               >
                 <img
