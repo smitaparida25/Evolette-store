@@ -17,6 +17,7 @@ function Products() {
                  );
 
   const [search, setSearch] = useState("");
+  const [theme, setTheme] = useState("light");
   const updateQuantity = useMutation("cart:updateQuantity");
   const removeItem = useMutation("cart:removeItem");
 
@@ -35,6 +36,7 @@ function Products() {
           />
 
           <button>Search</button>
+          <button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>Theme</button>
         <Link to="/wishlist">
                         <button className="cart-btn">Wishlist</button>
         </Link>
