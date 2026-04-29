@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useQuery, useMutation } from "convex/react";
 import { ChevronLeft } from "lucide-react";
