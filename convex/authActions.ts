@@ -7,12 +7,14 @@ export const signupUser = action({
   args: {
     email: v.string(),
     password: v.string(),
+    name: v.optional(v.string()),
   },
-  handler: async (ctx, { email, password }) => {
+  handler: async (ctx, { email, password, name }) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     return await ctx.runMutation("auth:insertUser", {
       email,
       password: hashedPassword,
+      name,
     });
   },
 });

@@ -5,8 +5,9 @@ export const insertUser = mutation({
   args: {
     email: v.string(),
     password: v.string(),
+    name: v.optional(v.string()),
   },
-  handler: async (ctx, { email, password }) => {
+  handler: async (ctx, { email, password, name }) => {
     const existing = await ctx.db
       .query("users")
       .filter(q => q.eq(q.field("email"), email))
@@ -16,7 +17,7 @@ export const insertUser = mutation({
       throw new Error("User already exists.");
     }
 
-    const newUser = await ctx.db.insert("users", { email, password });
+    const newUser = await ctx.db.insert("users", { email, password, name });
 
     return {
       id: newUser,
