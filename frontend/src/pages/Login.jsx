@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useAction } from "convex/react";
-import '../App.css';
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { ChevronLeft, Phone } from "lucide-react";
+import "../App.css";
 
 export default function Login() {
   const loginUser = useAction("authActions:loginUser");
@@ -16,8 +16,6 @@ export default function Login() {
     try {
       const user = await loginUser({ email, password });
       setMessage("Login Successful");
-      setEmail("");
-      setPassword("");
       localStorage.setItem("user", JSON.stringify({ _id: user._id, email: user.email }));
       navigate("/");
     } catch (error) {
@@ -27,50 +25,68 @@ export default function Login() {
   };
 
   return (
-    <div className="auth-container">
-        <Link to="/" className="logo-link">
-                  Evolette
+    <div className="split-auth-page">
+      <div className="split-auth-container">
+      <div className="auth-image-side">
+        <Link to="/" className="back-btn-pill">
+          <ChevronLeft size={28} />
         </Link>
-      <div className="auth-card">
-        <div className="auth-title-row">
-          <h2>Login</h2>
-
-          <div className="auth-toggle-container">
-            <label className="auth-switch" htmlFor="auth-checkbox">
-              <input
-                type="checkbox"
-                id="auth-checkbox"
-                onChange={() => navigate("/signup")}
-              />
-              <span className="auth-slider round"></span>
-            </label>
-          </div>
-        </div>
-
-        <form onSubmit={handleSubmit}>
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-
-          <button type="submit">Submit</button>
-        </form>
-
-        {message && <p>{message}</p>}
       </div>
+      <div className="auth-form-side">
+        <div className="auth-form-wrapper">
+          <div className="auth-header-split">
+            <h1>Welcome Back !</h1>
+            <p>We are Glad to see you again😊</p>
+          </div>
 
-      <img className="auth-image" src="/images/image.png" alt="visual" />
+          <div className="social-pill-auth">
+            <button className="social-pill with-text" type="button">
+              <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" />
+              Log in with Google
+            </button>
+            <button className="social-pill with-text" type="button">
+              <Phone size={20} strokeWidth={2.5} />
+              Log in with Phone
+            </button>
+          </div>
+
+          <div className="split-divider">or</div>
+
+          <form onSubmit={handleSubmit} className="split-form">
+            <div className="form-row-split">
+              <div className="input-group">
+                <label>Email Address</label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="form-row-split">
+              <div className="input-group">
+                <label>Password</label>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
+
+            <button type="submit" className="submit-pill">Log in</button>
+            {message && <p className="auth-message-split">{message}</p>}
+          </form>
+
+          <p className="split-switch-auth">
+            Don't have an account? <Link to="/signup">Sign up</Link>
+          </p>
+        </div>
+      </div>
+      </div>
     </div>
   );
 }

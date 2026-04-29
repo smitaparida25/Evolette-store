@@ -5,116 +5,113 @@ import { Link } from "react-router-dom";
 
 function Dashboard() {
   return (
-      <div className="dashboard">
-        <div className="intro">
-          <h1>Evolette</h1>
-          <p>
-            Handcrafted crochet pieces<br />
-            made with love<br />
-            and detail.
-          </p>
-           <Link to="/signup" className="signup-btn">
-                    Sign Up
-           </Link>
-        </div>
-       <div className="card-container">
-         <Link to="/products" className="card-link">
-           <div className="card">
-             <img src="/images/bow.png" alt="Crochet Hat" />
-             <h3>Cozy Crochet Hat</h3>
-             <p>Soft, warm, and handmade with love.</p>
-           </div>
-         </Link>
+    <div className="dashboard">
+      <div className="intro">
+        <h1>Evolette ✨</h1>
+        <p>
+          Magical crochet dreams,<br />
+          made stitch by stitch<br />
+          just for you.
+        </p>
+        <Link to="/signup" className="signup-btn">
+          Join the Magic
+        </Link>
+      </div>
 
-         <Link to="/products" className="card-link">
-           <div className="card">
-             <img src="/images/clip.png" alt="Crochet Bag" />
-             <h3>Boho Crochet Bag</h3>
-             <p>Perfect for your everyday essentials.</p>
-           </div>
-         </Link>
+      <div className="about-section">
+        <h2>The Evolette Story</h2>
+        <p>
+          We weave love and slow living into every single loop.
+          Our pieces aren't just handmade; they're heart-made.
+        </p>
+        <p>
+          Designed to be your cozy little companions for
+          a lifetime of soft moments and happy days.
+        </p>
+      </div>
 
-         <Link to="/products" className="card-link">
-           <div className="card">
-             <img src="/images/earrings.png" alt="Crochet Toy" />
-             <h3>Cute Crochet Toy</h3>
-             <p>Wholesome gifts for little hearts.</p>
-           </div>
-         </Link>
+      <div className="card-container">
+        <Link to="/products" className="card-link">
+          <div className="card">
+            <img src="/images/bow.png" alt="Crochet Hat" />
+            <h3>Cozy Crochet Hat</h3>
+            <p>Soft, warm, and handmade with love.</p>
+          </div>
+        </Link>
 
-         <Link to="/products" className="card-link">
-                    <div className="card">
-                      <img src="/images/clip.png" alt="Crochet Bag" />
-                      <h3>Boho Crochet Bag</h3>
-                      <p>Perfect for your everyday essentials.</p>
-                    </div>
-                  </Link>
-       </div>
+        <Link to="/products" className="card-link">
+          <div className="card">
+            <img src="/images/clip.png" alt="Hair Clip" />
+            <h3>Petal Pop Clip</h3>
+            <p>A little floral charm for your hair.</p>
+          </div>
+        </Link>
 
-       <div className="about-section">
-         <h2>About Evolette</h2>
-         <p>
-           Evolette is a small crochet studio creating timeless,
-           handcrafted pieces made slowly and thoughtfully.
-         </p>
-         <p>
-           Every item is designed to feel personal — made with
-           patience, quality yarns, and attention to detail.
-         </p>
-       </div>
+        <Link to="/products" className="card-link">
+          <div className="card">
+            <img src="/images/earrings.png" alt="Crochet Earrings" />
+            <h3>Daisy Dreams</h3>
+            <p>Wholesome elegance in every drop.</p>
+          </div>
+        </Link>
 
-       <div className="why-section">
-         <h2>Why Evolette?</h2>
-         <ul>
-           <li>100% handmade — no mass production</li>
-           <li>Limited pieces, crafted with care</li>
-           <li>Soft, skin-safe quality yarns</li>
-           <li>Made in small, thoughtful batches</li>
-         </ul>
-       </div>
+        <Link to="/products" className="card-link">
+          <div className="card">
+            <img src="/images/bookmark.jpeg" alt="Crochet Bookmark" />
+            <h3>Bloom Bookmark</h3>
+            <p>Keep your place in the prettiest way.</p>
+          </div>
+        </Link>
+      </div>
+
+      <div className="why-section">
+        <h2>Why You'll Love Us</h2>
+        <ul>
+          <li>Purely Handmade 🧸</li>
+          <li>Only a Few 🎀</li>
+          <li>Cloud-Soft Yarns ✨</li>
+          <li>Made with Patience ☁️</li>
+        </ul>
+      </div>
 
       <div className="process-section">
-        <h2>How It’s Made</h2>
+        <h2>Our Little Process</h2>
 
         <div className="process-steps">
           <div className="step">
-            <img src="/images/design.jpg" alt="Designed by hand" />
-            <span>Designed by hand</span>
+            <img src="/images/design.jpg" alt="Drawn with Love" />
+            <span>Drawn with Love</span>
           </div>
 
           <div className="step">
-            <img src="/images/crochet.jpg" alt="Crocheted stitch by stitch" />
-            <span>Crocheted stitch by stitch</span>
+            <img src="/images/crochet.jpg" alt="Stitch by Stitch" />
+            <span>Stitch by Stitch</span>
           </div>
 
           <div className="step">
-            <img src="/images/quality.jpg" alt="Quality checked" />
-            <span>Quality checked</span>
+            <img src="/images/quality.jpg" alt="Checked for Magic" />
+            <span>Checked for Magic</span>
           </div>
 
           <div className="step">
-            <img src="/images/pack.jpg" alt="Carefully packed" />
-            <span>Carefully packed</span>
+            <img src="/images/pack.jpg" alt="Sent with a Hug" />
+            <span>Sent with a Hug</span>
           </div>
         </div>
       </div>
 
-
-       <div className="cta-section">
-         <h2>Ready to find your favorite?</h2>
-         <Link to="/products" className="cta-btn">
-           Explore Collection
-         </Link>
-       </div>
-
-       <footer className="footer">
-         <p>Handmade with care 🤍</p>
-         <p>© Evolette</p>
-       </footer>
-
-
-
+      <div className="cta-section">
+        <h2>Ready for some magic?</h2>
+        <Link to="/products" className="cta-btn">
+          Shop the Magic
+        </Link>
       </div>
+
+      <footer className="footer">
+        <p>Handmade with care 🤍</p>
+        <p>© Evolette</p>
+      </footer>
+    </div>
 
   );
 }
