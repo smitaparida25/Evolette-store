@@ -33,9 +33,6 @@ function ProductPage() {
       <div className="product-content-split">
         <div className="product-image-side">
           <img src={imageSrc} alt={product.name} className="product-main-image" />
-          <button className="btn-360-view">
-            360° View
-          </button>
         </div>
 
         <div className="product-details-side">
