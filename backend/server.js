@@ -82,6 +82,36 @@ app.post("/login", async (req,res) => {
     }
 })
 
+app.get("/me", (req, res) => {
+
+    try{
+    const token = req.cookies.token;
+
+    if(!token){
+    return res.status(401).json({
+    error: "No Token.",
+    });
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET); // if not valid, throws an error.
+
+    res.json({
+    user: decoded,
+    });
+    }
+
+    catch{
+        res.status(401).json({
+            error: "Invalid token",
+        });
+    }
+
+});
+
+
+
+
+
 const PORT = 4000;
 
 app.listen(PORT, () => {
