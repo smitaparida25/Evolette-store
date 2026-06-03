@@ -109,7 +109,12 @@ app.get("/me", (req, res) => {
 });
 
 
-
+app.post("/logout", (req, res) => {
+res.clearCookie("token");
+res.json({
+    message: "Logged out successfully",
+  });
+});
 
 
 const PORT = 4000;
