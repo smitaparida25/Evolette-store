@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import { ConvexHttpClient } from "convex/browser";
 import { api } from "../convex/_generated/api.js";
 import jwt from "jsonwebtoken";
+import { authMiddleware } from "./middleware/authMiddleware.js";
 
 dotenv.config();
 
@@ -82,30 +83,10 @@ app.post("/login", async (req,res) => {
     }
 })
 
-app.get("/me", (req, res) => {
-
-    try{
-    const token = req.cookies.token;
-
-    if(!token){
-    return res.status(401).json({
-    error: "No Token.",
-    });
-    }
-
-    const decoded = jwt.verify(token, process.env.JWT_SECRET); // if not valid, throws an error.
-
-    res.json({
-    user: decoded,
-    });
-    }
-
-    catch{
-        res.status(401).json({
-            error: "Invalid token",
-        });
-    }
-
+app.get("/me", authMiddleware, (req, res) => {
+res.json({
+    user: req.user,
+  });
 });
 
 
