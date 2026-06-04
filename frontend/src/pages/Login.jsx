@@ -13,15 +13,22 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const user = await loginUser({ email, password });
-      setMessage("Login Successful");
-      localStorage.setItem("user", JSON.stringify({ _id: user._id, email: user.email }));
-      navigate("/");
-    } catch (error) {
-      console.error(error);
-      setMessage("Login failed.");
+    const response = await fetch("http://localhost:4000/login",{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+          },
+        credentials: "include",
+         body: JSON.stringify({
+            email,
+            password,
+          }),
+        });
+    if (!response.ok) {
+      throw new Error("Login failed");
     }
+    setMessage("Login Successful");
+    navigate("/");
   };
 
   return (

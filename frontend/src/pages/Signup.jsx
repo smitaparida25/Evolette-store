@@ -29,6 +29,7 @@ export default function Signup() {
     if (!response.ok) {
       throw new Error("Signup failed");
     }
+    navigate("/login");
   };
 
   return (
