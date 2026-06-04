@@ -15,17 +15,19 @@ export default function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      setMessage("Passwords do not match.");
-      return;
-    }
-    try {
-      await signupUser({ email, password });
-      setMessage("Signup Successful.");
-      navigate("/login");
-    } catch (error) {
-      console.error(error);
-      setMessage("Signup failed. Try again.");
+    const response = await fetch("http://localhost:4000/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Signup failed");
     }
   };
 
