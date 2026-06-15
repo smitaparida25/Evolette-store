@@ -10,6 +10,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [user, setUser] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,6 +28,9 @@ export default function Login() {
     if (!response.ok) {
       throw new Error("Login failed");
     }
+    const data = await response.json();
+
+    console.log(data);
     setMessage("Login Successful");
     navigate("/");
   };
