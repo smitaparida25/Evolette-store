@@ -1,9 +1,11 @@
 import React from "react";
 import "../App.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 
 function Dashboard() {
+    const [user, setUser] = useState(null);
   return (
     <div className="dashboard">
       <div className="intro">

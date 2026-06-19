@@ -11,7 +11,6 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await fetch("http://localhost:4000/login",{
