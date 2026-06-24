@@ -11,11 +11,29 @@ import { useUserStore } from "./store/useUserStore";
 import Checkout from "./pages/Checkout";
 
 function App() {
-  const loadUser = useUserStore((s) => s.loadUserFromStorage);
+    const setUser = useUserStore((s)=> s.setUser);
 
   useEffect(() => {
-    loadUser();
-  }, [loadUser]);
+    fetch("http://localhost:3000/me", {
+      credentials: "include",
+    })
+      .then((res) => {
+        if (!res.ok) {
+          setUser(null);
+          return null;
+        }
+
+        return res.json();
+      })
+      .then((data) => {
+        if (data) {
+          setUser(data.user);
+        }
+      })
+      .catch(() => {
+        setUser(null);
+      });
+  }, [setUser]); // dependency array; if it changes then run this but in this case that'll not happen as setuser(only created once other than that considered same) will not change so it's usually done to follow the react rule of having the things used inside the function being in dependency array.
 
   return (
     <BrowserRouter>
