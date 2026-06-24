@@ -1,3 +1,5 @@
+// app's shared data
+
 import { create } from "zustand";
 
 export const useUserStore = create((set) => ({
@@ -5,13 +7,5 @@ export const useUserStore = create((set) => ({
 
   setUser: (user) => {
     set({ user });
-    localStorage.setItem("user", JSON.stringify(user));
   },
-
-  loadUserFromStorage: () => {
-    const raw = localStorage.getItem("user");
-    if (raw) {
-      set({ user: JSON.parse(raw) });
-    }
-  }
 }));
